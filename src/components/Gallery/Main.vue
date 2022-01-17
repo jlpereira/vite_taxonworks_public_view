@@ -1,16 +1,15 @@
 <template>
   <div class="flex flex-col">
     <div class="flex justify-center bg-black">
-      <div class="h-80 content-center">
+      <div class="h-80 max-h-80">
         <img
-          class="max-h-80 cursor-zoom-in"
+          class="max-h-80 w-100 cursor-zoom-in mx-auto"
           :src="selectedImage.original"/>
       </div>
     </div>
     <div class="flex flex-row justify-center overflow-x-auto">
       <div v-for="image in images">
         <GalleryThumbnail
-          class="ml-1 mr-1 mt-2 bg-black flex flex-col justify-center cursor-pointer"
           @click="selectedImage = image"
           :image="image"/>
       </div>
@@ -20,6 +19,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+import GalleryThumbnail from './Thumbnail.vue'
 
 const props = defineProps({
   images: {

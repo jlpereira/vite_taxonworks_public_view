@@ -7,7 +7,7 @@
     >
       <svg
         v-if="index"
-        class="w-6 h-6 text-blue-400"
+        class="w-4 h-4 text-gray-400"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@
         />
       </svg>
       <a
-        class="inline-flex items-center text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+        class="inline-flex items-center text-sm text-gray-700 hover:text-gray-900"
         :href="`/otus/${item.otu_id}`"
       >{{ key }}</a>
     </li>
@@ -27,7 +27,7 @@
     <li 
       class="inline-flex items-center">
       <svg
-        class="w-6 h-6 text-blue-400"
+        class="w-4 h-4 text-gray-400"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

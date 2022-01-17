@@ -1,19 +1,19 @@
 <template>
   <Card>
     <div class="pl-6 p-4 border-b">
-      <h1 class="text-lg">Citations</h1>
+      <h1 class="text-md">Citations</h1>
     </div>
     <div class="pl-6 p-4">
       <ul class="list-disc pl-4 text-sm">
         <li v-for="citation in data">
-          <NuxtLink
+          <router-link
             class="text-blue-600"
             :to="{
               name: 'otus-id',
               params: { id: 123 }
             }">
             {{ citation.label }}
-          </NuxtLink>
+          </router-link>
         </li>
       </ul>
     </div>

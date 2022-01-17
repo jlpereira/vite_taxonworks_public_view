@@ -1,9 +1,9 @@
 <template>
-<Card >
+<Card>
   <div class="border-b pl-6 p-4">
     <h1 class="text-md">Type specimen</h1>
   </div>
-  <div class="pl-6 p-4">
+  <CardContent>
     <ul class="text-sm">
       <li>
         Type locality: <span class="font-bold">{{ data.collecting_event.label }}</span>
@@ -18,7 +18,7 @@
         Repository: <span class="font-bold">{{ data.reposity.label }}</span>
       </li>
     </ul>
-  </div>
+  </CardContent>
 </Card>
 </template>
 

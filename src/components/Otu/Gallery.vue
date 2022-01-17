@@ -1,17 +1,25 @@
 <template>
-  <Card class="p-4">
-    <GalleryMain :images="images"/>
+  <Card>
+    <CardContent>
+      <GalleryMain :images="images"/>
+    </CardContent>
   </Card>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { makeRequest } from '../../utils/makeRequest';
+import GalleryMain from '@/components/Gallery/Main.vue'
+import CardContent from '../Card/CardContent.vue';
 
-/* const config = useRuntimeConfig()
+const images = ref({})
 
-const { data: images } = useFetch(`${config.API_HOST}/images.json`, {
+makeRequest.get('/images.json', {
   params: {
-    project_token: config.PROJECT_TOKEN,
     per: 5
   }
-}) */
+}).then(({ data }) => {
+  images.value = data
+})
+
 </script>

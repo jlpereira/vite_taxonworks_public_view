@@ -13,18 +13,17 @@
           <Autocomplete/>
         </div>
 
-        <div class="mt-4 mb-8">
+        <div class="mt-8 mb-10">
           <TaxaInfo/>
           <OtuExport/>
         </div>
 
         <TabMenu class="m-[-1px]">
           <TabItem
-            v-for="tab in tabs"
-            :active="route.name === tab.link"
-            :to="{ name: tab.link }"
+            v-for="({ name, label }) in tabs"
+            :to="{ name }"
           >
-            {{ tab.label }}
+            {{ label }}
           </TabItem>
         </TabMenu>
       </div>
@@ -45,10 +44,22 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
 import Autocomplete from '@/components/Autocomplete.vue'
 import TaxaInfo from '@/components/Otu/TaxaInfo.vue'
 import { useRoute, useRouter } from 'vue-router'
+import { humanize } from '@/utils/strings'
 
 const route = useRoute()
 const router = useRouter()
 
+const childrenRoutes = router.getRoutes().find(route => route.name === 'otus-id')
+const tabs = childrenRoutes.children
+.filter(({ path }) => path.length)
+.map(({ path, name }) => ({
+  label: path && humanize(path),
+  path,
+  name
+}))
+
+
+/* 
 const tabs = [
   {
     label: 'Overview',
@@ -86,7 +97,6 @@ const tabs = [
     label: 'Annotations',
     link: 'otus-id-annotations'
   },
-, */
-]
+] */
 
 </script>
