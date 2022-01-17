@@ -1,8 +1,8 @@
 <template>
 <Card>
-  <div class="border-b pl-6 p-4">
+  <CardHeader>
     <h1 class="text-md">Type specimen</h1>
-  </div>
+  </CardHeader>
   <CardContent>
     <ul class="text-sm">
       <li>
@@ -23,6 +23,7 @@
 </template>
 
 <script setup>
+import CardHeader from '../Card/CardHeader.vue';
 
 const data = {
   type: 'Syntype',

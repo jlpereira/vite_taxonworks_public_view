@@ -1,9 +1,9 @@
 <template>
   <Card>
-    <div class="pl-6 p-4 border-b">
+    <CardHeader>
       <h1 class="text-md">Citations</h1>
-    </div>
-    <div class="pl-6 p-4">
+    </CardHeader>
+    <CardContent>
       <ul class="list-disc pl-4 text-sm">
         <li v-for="citation in data">
           <router-link
@@ -16,11 +16,12 @@
           </router-link>
         </li>
       </ul>
-    </div>
+    </CardContent>
   </Card>
 </template>
 
 <script setup>
+import CardContent from '../Card/CardContent.vue';
 
 const data = [
   {

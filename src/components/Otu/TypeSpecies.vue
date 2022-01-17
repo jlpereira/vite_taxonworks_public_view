@@ -1,8 +1,8 @@
 <template>
   <Card class="p-4">
-    <div class="border-b">
-    <h1 class="text-xl">Type specimen</h1>
-    </div>
+    <CardHeader>
+      <h1 class="text-xl">Type specimen</h1>
+    </CardHeader>
     <p>
       <NuxtLink
         class="text-blue-600"
