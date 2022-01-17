@@ -4,7 +4,9 @@
       v-for="item in props.list"
       class="border-l">
       <span>{{ item.name }}</span>
-      <TreeView :list="item.children"/>
+      <TreeView
+        v-if="item.children"
+        :list="item.children"/>
     </li>
   </ul>
 </template>

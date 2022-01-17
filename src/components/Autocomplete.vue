@@ -15,17 +15,29 @@
       </svg>
     </div>
     <input
+      v-model="typed"
       type="text"
       class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       :placeholder="placeholder"
     />
-    <div class="list">
 
-    </div>
+    <ul
+      v-if="list.length"
+      class="list absolute z-[500] max-h-52 overflow-y-auto border">
+      <li
+        v-for="item in list"
+        class="p-2 border-b bg-white text-sm cursor-pointer hover:bg-gray-200"
+        @click="emit('select', item)"
+      >
+        <span v-html="item[label]"></span>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup>
+import { ref, watch } from 'vue'
+import { makeRequest } from '@/utils/makeRequest'
 
 const props = defineProps({
   placeholder: {
@@ -36,7 +48,43 @@ const props = defineProps({
   url: {
     type: String,
     required: true
+  },
+
+  param: {
+    type: String,
+    default: 'term'
+  },
+
+  label: {
+    type: String,
+    default: 'label'
   }
 })
+
+const emit = defineEmits(['select'])
+const typed = ref('')
+const list = ref([])
+
+const delay = 1000
+let timeout
+
+watch(typed, newVal => {
+  clearTimeout(timeout)
+
+  if (newVal.length) {
+    timeout = setTimeout(() => {
+      makeRequest.get(props.url, {
+        params: {
+          [props.param]: typed.value
+        }
+      }).then(({ data }) => {
+        list.value = data
+      })
+    }, delay)
+  } else {
+    list.value = []
+  }
+})
+
 
 </script>

@@ -10,7 +10,12 @@
           items-start"
         >
           <Breadcrumb/>
-          <Autocomplete/>
+          <Autocomplete
+            url="/otus/autocomplete"
+            param="term"
+            label="label_html"
+            @select="loadOtu"
+          />
         </div>
 
         <div class="mt-8 mb-10">
@@ -30,7 +35,7 @@
     </div>
     <div>
       <div class="container mx-auto pt-4">
-        <router-view></router-view>
+        <router-view :key="route.fullPath"></router-view>
       </div>
     </div>
   </div>
@@ -58,45 +63,12 @@ const tabs = childrenRoutes.children
   name
 }))
 
-
-/* 
-const tabs = [
-  {
-    label: 'Overview',
-    link: 'otus-id-overview'
-  },
-  {
-    label: 'Distribution',
-    link: 'otus-id-distribution'
-  }
-/*   {
-    label: 'Timeline',
-    link: 'otus-id-timeline'
-  },
-  {
-    label: 'Descendants',
-    link: 'otus-id-descendants'
-  },
-  {
-    label: 'Images',
-    link: 'otus-id-images'
-  },
-  {
-    label: 'Type specimens',
-    link: 'otus-id-type_specimens'
-  },
-  {
-    label: 'Specimen records',
-    link: 'otus-id-specimen_records'
-  },
-  {
-    label: 'Content',
-    link: 'otus-id-content'
-  },
-  {
-    label: 'Annotations',
-    link: 'otus-id-annotations'
-  },
-] */
-
+const loadOtu = ({ id }) => {
+  router.push({
+    name: 'otus-id-overview',
+    params: {
+      id
+    }
+  })
+}
 </script>

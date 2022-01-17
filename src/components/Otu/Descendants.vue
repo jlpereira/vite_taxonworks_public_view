@@ -11,10 +11,10 @@
 </template>
 
 <script setup>
-
+import { ref } from 'vue';
 import TreeView from '@/components/TreeView.vue'
 
-const taxonList = [
+const taxonList = ref([
   {
     id: 1,
     name: 'Dichroplus',
@@ -43,6 +43,6 @@ const taxonList = [
       }
     ]
   }
-]
+])
 
 </script>

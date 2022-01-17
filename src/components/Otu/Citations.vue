@@ -5,15 +5,8 @@
     </CardHeader>
     <CardContent>
       <ul class="list-disc pl-4 text-sm">
-        <li v-for="citation in data">
-          <router-link
-            class="text-blue-600"
-            :to="{
-              name: 'otus-id',
-              params: { id: 123 }
-            }">
-            {{ citation.label }}
-          </router-link>
+        <li v-for="citation in citations">
+          <span v-html="citation.citation_source_body"/>
         </li>
       </ul>
     </CardContent>
@@ -21,32 +14,23 @@
 </template>
 
 <script setup>
-import CardContent from '../Card/CardContent.vue';
+import { ref } from 'vue'
+import { useRoute } from 'vue-router';
+import { makeRequest } from '@/utils/makeRequest';
 
-const data = [
-  {
-    id: 1,
-    label: 'Dichroplus Stal, 1873: 73: (valid) Type species by subsequent designation Acridium arrogans Stal, 1861 in resolveTransitionHooks, 1905',
-    author: 'Rehn',
-    year: 1905
-  },
-  {
-    id: 2,
-    label: 'Giglio-Tos, 1894: 20, 21.',
-    author: 'Giglio-Tos',
-    year: 1894
-  },
-  {
-    id: 3,
-    label: 'Bruner, 1900:71',
-    author: 'Bruner',
-    year: 105
-  },
-  {
-    id: 4,
-    label: 'Liebermann, 1939: 206',
-    author: 'Liebermann',
-    year: 1939
-  }
-]
+const route = useRoute()
+const citations = ref([])
+
+makeRequest.get(`/otus/${route.params.id}`).then(({ data }) => {
+  makeRequest.get('/citations.json', { 
+    params: {
+      citation_object_id: data.taxon_name_id,
+      citation_object_type: 'TaxonName',
+      extend: ['source']
+    }
+  }).then(({ data }) => {
+    citations.value = data
+  })
+})
+
 </script>
