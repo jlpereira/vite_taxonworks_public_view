@@ -7,19 +7,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { makeRequest } from '@/utils/makeRequest'
 
-const route = useRoute()
-const otu = ref({})
-const taxon = ref({})
-
-makeRequest.get(`/otus/${route.params.id}`).then(({ data }) => {
-  otu.value = data
-
-  makeRequest.get(`/taxon_names/${data.taxon_name_id}`).then(({ data }) => {
-    taxon.value = data
-  })
+const props = defineProps({
+  taxon: {
+    type: Object,
+    default: () => {}
+  }
 })
+
 </script>

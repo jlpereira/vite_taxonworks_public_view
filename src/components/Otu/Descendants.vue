@@ -4,7 +4,7 @@
       <h1 class="text-md">Descendants</h1>
     </CardHeader>
     <CardContent>
-      <span>Dichroplus elongatus</span>
+      <span>Current name</span>
       <TreeView :list="taxonList"/>
     </CardContent>
   </Card>
@@ -17,29 +17,29 @@ import TreeView from '@/components/TreeView.vue'
 const taxonList = ref([
   {
     id: 1,
-    name: 'Dichroplus',
+    name: 'Child',
     children: [
       {
         id: 2,
-        name: 'Dichroplus elongatus',
+        name: 'Another child',
       },
       {
         id: 3,
-        name: 'Dichroplus maculipennis',
+        name: 'Another child',
       }
     ]
   },
   {
     id: 1,
-    name: 'Dichroplus',
+    name: 'Child',
     children: [
       {
         id: 2,
-        name: 'Dichroplus elongatus',
+        name: 'Another child',
       },
       {
         id: 3,
-        name: 'Dichroplus maculipennis',
+        name: 'Another child',
       }
     ]
   }

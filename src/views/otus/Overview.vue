@@ -1,12 +1,12 @@
 <template>
 <div>
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
     <div class="grid grid-cols-1 gap-4">
       <OtuGallery/>
       <OtuTypeSpecimen/>
       <OtuCitations/>
     </div>
-    <div class="grid grid-cols-1 gap-4">
+    <div class="grid grid-cols-1 auto-rows-min gap-4">
       <OtuMap/>
       <OtuDescendants/>
     </div>

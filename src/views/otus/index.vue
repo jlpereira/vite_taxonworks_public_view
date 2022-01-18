@@ -19,7 +19,9 @@
         </div>
 
         <div class="mt-8 mb-10">
-          <TaxaInfo/>
+          <TaxaInfo
+            :taxon="taxon"
+          />
           <OtuExport/>
         </div>
 
@@ -48,11 +50,14 @@ import TabItem from '@/components/Tab/TabItem.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import Autocomplete from '@/components/Autocomplete.vue'
 import TaxaInfo from '@/components/Otu/TaxaInfo.vue'
+import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { humanize } from '@/utils/strings'
+import { makeRequest } from '@/utils/makeRequest'
 
 const route = useRoute()
 const router = useRouter()
+const routeParams = ref(route.params)
 
 const childrenRoutes = router.getRoutes().find(route => route.name === 'otus-id')
 const tabs = childrenRoutes.children
@@ -63,6 +68,25 @@ const tabs = childrenRoutes.children
   name
 }))
 
+router.afterEach(route => { routeParams.value = route.params })
+
+const otu = ref({})
+const taxon = ref({})
+
+watch(routeParams, (newParams, oldParams) => {
+
+  if (newParams.id == oldParams?.id) { return }
+
+  makeRequest.get(`/otus/${route.params.id}`).then(({ data }) => {
+    otu.value = data
+
+    makeRequest.get(`/taxon_names/${data.taxon_name_id}`).then(({ data }) => {
+      taxon.value = data
+    })
+  })
+}, { immediate: true })
+
+
 const loadOtu = ({ id }) => {
   router.push({
     name: 'otus-id-overview',
@@ -71,4 +95,5 @@ const loadOtu = ({ id }) => {
     }
   })
 }
+
 </script>
