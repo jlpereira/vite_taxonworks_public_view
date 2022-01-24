@@ -1,5 +1,5 @@
 <template>
-  <div class="hidden relative mr-3 md:mr-0 md:block">
+  <div class="autocomplete hidden relative mr-3 md:mr-0 md:block">
     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
       <svg
         class="w-5 h-5 text-gray-500"
@@ -17,16 +17,17 @@
     <input
       v-model="typed"
       type="text"
-      class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
+      class="autocomplete__input block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
       :placeholder="placeholder"
     >
 
     <ul
       v-if="list.length"
-      class="list absolute z-[500] max-h-52 overflow-y-auto border"
+      class="autocomplete__list list absolute z-[500] max-h-52 overflow-y-auto border"
     >
       <li
         v-for="item in list"
+        :key="item.id"
         class="p-2 border-b bg-white text-sm cursor-pointer hover:bg-gray-200"
         @click="emit('select', item)"
       >
@@ -89,3 +90,20 @@ watch(typed, newVal => {
 
 
 </script>
+
+<style lang="scss" scoped>
+
+.autocomplete {
+  &__list {
+    display: none;
+  }
+
+  &__input:focus ~ &__list {
+    display: block;
+  }
+
+  &__list:hover {
+    display: block;
+  }
+}
+</style>

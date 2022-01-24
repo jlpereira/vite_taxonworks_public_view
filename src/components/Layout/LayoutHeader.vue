@@ -148,14 +148,10 @@
 const navItems = [
   {
     label: 'Home',
-    link: '#'
+    link: '/'
   },
   {
     label: 'Search',
-    link: '#'
-  },
-  {
-    label: 'About',
     link: '#'
   },
   {

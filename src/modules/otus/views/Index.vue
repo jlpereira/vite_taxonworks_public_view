@@ -28,6 +28,7 @@
         <TabMenu class="m-[-1px]">
           <TabItem
             v-for="({ name, label }) in tabs"
+            :key="name"
             :to="{ name }"
           >
             {{ label }}
@@ -74,7 +75,7 @@ watch(routeParams, async (newParams, oldParams) => {
   if (newParams.id == oldParams?.id) { return }
 
   otu.value = (await OtuService.getOtu(route.params.id)).data
-  taxon.value = (await OtuService.getTaxon(otu.value.id)).data
+  taxon.value = (await OtuService.getTaxon(otu.value.taxon_name_id)).data
 
 }, { immediate: true })
 
