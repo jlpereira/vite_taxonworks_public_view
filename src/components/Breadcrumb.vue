@@ -25,7 +25,8 @@
     </li>
 
     <li 
-      class="inline-flex items-center">
+      class="inline-flex items-center"
+    >
       <svg
         class="w-4 h-4 text-gray-400"
         fill="currentColor"
@@ -40,7 +41,8 @@
       </svg>
       <span
         class="text-sm"
-        v-html="data.current_otu.name"/>
+        v-html="data.current_otu.name"
+      />
     </li>
   </ul>
 </template>

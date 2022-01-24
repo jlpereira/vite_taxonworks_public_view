@@ -2,7 +2,7 @@
   <Card>
     <h1>External resources</h1>
     <ul class="text-sm">
-      <li></li>
+      <li />
     </ul>
   </Card>
 </template>

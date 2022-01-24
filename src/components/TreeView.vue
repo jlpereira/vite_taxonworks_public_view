@@ -2,11 +2,13 @@
   <ul class="tree">
     <li
       v-for="item in props.list"
-      class="border-l">
+      class="border-l"
+    >
       <span>{{ item.name }}</span>
       <TreeView
         v-if="item.children"
-        :list="item.children"/>
+        :list="item.children"
+      />
     </li>
   </ul>
 </template>

@@ -2,14 +2,15 @@
   <div>
     <div class="bg-white border-b pt-6">
       <div 
-        class="container mx-auto">
+        class="container mx-auto"
+      >
         <div 
           class="
             flex 
             justify-between 
             items-start"
         >
-          <Breadcrumb/>
+          <Breadcrumb />
           <Autocomplete
             url="/otus/autocomplete"
             param="term"

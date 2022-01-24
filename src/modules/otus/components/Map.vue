@@ -1,17 +1,21 @@
 <template>
-<Card>
-  <CardContent class="h-96 max-h-96">
-  <l-map 
-    class="h-96 max-h-96"
-    :zoom="15"
-    :center="[39.75621, -104.99404]">
-    <l-geo-json 
-      :geojson="geojson"
-      :options="geojsonOptions"
-    />
-    <l-tile-layer :url="tileUrl" :attribution="attribution"></l-tile-layer>
-  </l-map>
-  </CardContent>
+  <Card>
+    <CardContent class="h-96 max-h-96">
+      <l-map 
+        class="h-96 max-h-96"
+        :zoom="15"
+        :center="[39.75621, -104.99404]"
+      >
+        <l-geo-json 
+          :geojson="geojson"
+          :options="geojsonOptions"
+        />
+        <l-tile-layer
+          :url="tileUrl"
+          :attribution="attribution"
+        />
+      </l-map>
+    </CardContent>
   </Card>
 </template>
 

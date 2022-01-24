@@ -1,7 +1,7 @@
 <template>
   <Card>
     <CardContent>
-      <GalleryMain :images="images"/>
+      <GalleryMain :images="images" />
     </CardContent>
   </Card>
 </template>

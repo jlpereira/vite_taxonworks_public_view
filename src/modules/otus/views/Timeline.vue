@@ -1,5 +1,5 @@
 <template>
-<div>
-Timeline
-</div>
+  <div>
+    Timeline
+  </div>
 </template>

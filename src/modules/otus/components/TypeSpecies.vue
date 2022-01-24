@@ -1,7 +1,9 @@
 <template>
   <Card class="p-4">
     <CardHeader>
-      <h1 class="text-xl">Type specimen</h1>
+      <h1 class="text-xl">
+        Type specimen
+      </h1>
     </CardHeader>
     <p>
       <NuxtLink
@@ -9,7 +11,8 @@
         :to="{
           name: 'otus-id',
           params: { id: data.objective.id }
-        }">
+        }"
+      >
         {{ data.objective.name }}
       </NuxtLink>
 
@@ -20,7 +23,8 @@
         :to="{
           name: 'otus-id',
           params: { id: data.objective.id }
-        }">
+        }"
+      >
         {{ data.objective.name }}
       </NuxtLink>
     </p>

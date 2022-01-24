@@ -1,12 +1,14 @@
 <template>
   <Card>
     <CardHeader>
-      <h1 class="text-md">Citations</h1>
+      <h1 class="text-md">
+        Citations
+      </h1>
     </CardHeader>
     <CardContent>
       <ul class="list-disc pl-4 text-sm">
         <li v-for="citation in citations">
-          <span v-html="citation.citation_source_body"/>
+          <span v-html="citation.citation_source_body" />
         </li>
       </ul>
     </CardContent>

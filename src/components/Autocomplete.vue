@@ -19,17 +19,18 @@
       type="text"
       class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
       :placeholder="placeholder"
-    />
+    >
 
     <ul
       v-if="list.length"
-      class="list absolute z-[500] max-h-52 overflow-y-auto border">
+      class="list absolute z-[500] max-h-52 overflow-y-auto border"
+    >
       <li
         v-for="item in list"
         class="p-2 border-b bg-white text-sm cursor-pointer hover:bg-gray-200"
         @click="emit('select', item)"
       >
-        <span v-html="item[label]"></span>
+        <span v-html="item[label]" />
       </li>
     </ul>
   </div>

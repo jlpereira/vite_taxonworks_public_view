@@ -4,14 +4,16 @@
       <div class="h-80 max-h-80 flex items-center justify-center">
         <img
           class="max-h-80 h-max w-100 cursor-zoom-in m-auto"
-          :src="selectedImage.original"/>
+          :src="selectedImage.original"
+        >
       </div>
     </div>
     <div class="flex flex-row justify-center overflow-x-auto">
       <div v-for="image in images">
         <GalleryThumbnail
+          :image="image"
           @click="selectedImage = image"
-          :image="image"/>
+        />
       </div>
     </div>
   </div>

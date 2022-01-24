@@ -1,24 +1,24 @@
 <template>
-<div>
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-    <div class="grid grid-cols-1 gap-4">
-      <component 
-        v-for="component in componentsLayout.left"
-        :is="component"
-        :otu-id="otuId"
-        :taxon-id="taxonId"
-      />
-    </div>
-    <div class="grid grid-cols-1 auto-rows-min gap-4">
-      <component 
-        v-for="component in componentsLayout.right"
-        :is="component"
-        :otu-id="otuId"
-        :taxon-id="taxonId"
-      />
+  <div>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div class="grid grid-cols-1 gap-4">
+        <component 
+          :is="component"
+          v-for="component in componentsLayout.left"
+          :otu-id="otuId"
+          :taxon-id="taxonId"
+        />
+      </div>
+      <div class="grid grid-cols-1 auto-rows-min gap-4">
+        <component 
+          :is="component"
+          v-for="component in componentsLayout.right"
+          :otu-id="otuId"
+          :taxon-id="taxonId"
+        />
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script setup>

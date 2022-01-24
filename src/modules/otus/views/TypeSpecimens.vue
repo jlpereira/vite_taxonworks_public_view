@@ -1,3 +1,3 @@
 <template>
-Timeline
+  Timeline
 </template>

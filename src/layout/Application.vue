@@ -1,8 +1,8 @@
 <template>
   <div>
-    <LayoutHeader/>
-    <slot/>
-    <LayoutFooter/>
+    <LayoutHeader />
+    <slot />
+    <LayoutFooter />
   </div>
 </template>
 <script setup>

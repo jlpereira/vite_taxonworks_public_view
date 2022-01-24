@@ -1,11 +1,13 @@
 <template>
   <Card>
     <CardHeader>
-      <h1 class="text-md">Descendants</h1>
+      <h1 class="text-md">
+        Descendants
+      </h1>
     </CardHeader>
     <CardContent>
       <span>Current name</span>
-      <TreeView :list="taxonList"/>
+      <TreeView :list="taxonList" />
     </CardContent>
   </Card>
 </template>
