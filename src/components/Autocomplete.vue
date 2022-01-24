@@ -17,7 +17,7 @@
     <input
       v-model="typed"
       type="text"
-      class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
       :placeholder="placeholder"
     />
 
@@ -37,7 +37,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import { makeRequest } from '@/utils/makeRequest'
+import { makeAPIRequest } from '@/utils/request'
 
 const props = defineProps({
   placeholder: {
@@ -73,7 +73,7 @@ watch(typed, newVal => {
 
   if (newVal.length) {
     timeout = setTimeout(() => {
-      makeRequest.get(props.url, {
+      makeAPIRequest.get(props.url, {
         params: {
           [props.param]: typed.value
         }

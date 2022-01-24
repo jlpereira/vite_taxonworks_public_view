@@ -5,11 +5,11 @@ const {
   VITE_PROJECT_TOKEN
 } = import.meta.env
 
-const makeRequest = axios.create({
+const makeAPIRequest = axios.create({
   baseURL: VITE_API_HOST,
   params: {
     project_token: VITE_PROJECT_TOKEN
   }
 })
 
-export { makeRequest }
+export { makeAPIRequest }

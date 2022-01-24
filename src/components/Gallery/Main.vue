@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col">
     <div class="flex justify-center bg-black">
-      <div class="h-80 max-h-80">
+      <div class="h-80 max-h-80 flex items-center justify-center">
         <img
-          class="max-h-80 w-100 cursor-zoom-in mx-auto"
+          class="max-h-80 h-max w-100 cursor-zoom-in m-auto"
           :src="selectedImage.original"/>
       </div>
     </div>
@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import GalleryThumbnail from './Thumbnail.vue'
+import GalleryThumbnail from './GalleryThumbnail.vue'
 
 const props = defineProps({
   images: {

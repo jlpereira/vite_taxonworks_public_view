@@ -23,7 +23,6 @@
 </template>
 
 <script setup>
-import CardHeader from '../Card/CardHeader.vue';
 
 const data = {
   type: 'Syntype',

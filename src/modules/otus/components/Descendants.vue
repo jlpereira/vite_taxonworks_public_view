@@ -30,15 +30,15 @@ const taxonList = ref([
     ]
   },
   {
-    id: 1,
+    id: 4,
     name: 'Child',
     children: [
       {
-        id: 2,
+        id: 5,
         name: 'Another child',
       },
       {
-        id: 3,
+        id: 6,
         name: 'Another child',
       }
     ]

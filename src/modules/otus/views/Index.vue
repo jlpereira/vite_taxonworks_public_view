@@ -5,9 +5,9 @@
         class="container mx-auto">
         <div 
           class="
-          flex 
-          justify-between 
-          items-start"
+            flex 
+            justify-between 
+            items-start"
         >
           <Breadcrumb/>
           <Autocomplete
@@ -22,7 +22,6 @@
           <TaxaInfo
             :taxon="taxon"
           />
-          <OtuExport/>
         </div>
 
         <TabMenu class="m-[-1px]">
@@ -37,7 +36,11 @@
     </div>
     <div>
       <div class="container mx-auto pt-4">
-        <router-view :key="route.fullPath"></router-view>
+        <router-view
+          :key="route.fullPath"
+          :taxon-id="taxon.id"
+          :otu-id="otu.id"
+        />
       </div>
     </div>
   </div>
@@ -45,45 +48,33 @@
 
 <script setup>
 
+import { ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import TabMenu from '@/components/Tab/TabMenu.vue'
 import TabItem from '@/components/Tab/TabItem.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import Autocomplete from '@/components/Autocomplete.vue'
-import TaxaInfo from '@/components/Otu/TaxaInfo.vue'
-import { ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { humanize } from '@/utils/strings'
-import { makeRequest } from '@/utils/makeRequest'
+import TaxaInfo from '@/modules/otus/components/TaxaInfo.vue'
+import useChildrenRoutes from '../composables/useChildrenRoutes'
+import OtuService from '../services/OtuService'
 
 const route = useRoute()
 const router = useRouter()
 const routeParams = ref(route.params)
-
-const childrenRoutes = router.getRoutes().find(route => route.name === 'otus-id')
-const tabs = childrenRoutes.children
-.filter(({ path }) => path.length)
-.map(({ path, name }) => ({
-  label: path && humanize(path),
-  path,
-  name
-}))
+const tabs = useChildrenRoutes()
 
 router.afterEach(route => { routeParams.value = route.params })
 
 const otu = ref({})
 const taxon = ref({})
 
-watch(routeParams, (newParams, oldParams) => {
+watch(routeParams, async (newParams, oldParams) => {
 
   if (newParams.id == oldParams?.id) { return }
 
-  makeRequest.get(`/otus/${route.params.id}`).then(({ data }) => {
-    otu.value = data
+  otu.value = (await OtuService.getOtu(route.params.id)).data
+  taxon.value = (await OtuService.getTaxon(otu.value.id)).data
 
-    makeRequest.get(`/taxon_names/${data.taxon_name_id}`).then(({ data }) => {
-      taxon.value = data
-    })
-  })
 }, { immediate: true })
 
 
