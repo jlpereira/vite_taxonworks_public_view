@@ -28,8 +28,6 @@ import OtuCitations from '@/modules/otus/components/Citations.vue'
 import OtuMap from '@/modules/otus/components/Map.vue'
 import OtuDescendants from '@/modules/otus/components/Descendants.vue'
 
-console.log("Entra")
-
 const componentsLayout = {
   left: [
     OtuGallery,
