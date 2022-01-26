@@ -1,8 +1,8 @@
 <template>
   <ul class="inline-flex items-center space-x-1 flex-wrap">
     <li
-      v-for="(item, key, index) in data.parents"
-      :key="item.otu_id"
+      v-for="(item, key, index) in list"
+      :key="item.id"
       class="inline-flex items-center"
     >
       <svg
@@ -18,10 +18,19 @@
           clip-rule="evenodd"
         />
       </svg>
-      <a
+      <router-link 
+        v-if="item.length === 1"
         class="inline-flex items-center text-sm text-gray-700 hover:text-gray-900"
-        :href="`/otus/${item.otu_id}`"
-      >{{ key }}</a>
+        :to="{ name: 'otus-id', params: { id: item[0].id } }"
+      >
+        {{ key }}
+      </router-link>
+      <breadcrumb-dropdown 
+        v-else 
+        :list="item.map(o => ({ ...o, name: o.name || key }))"
+      >
+        {{ key }}
+      </breadcrumb-dropdown>
     </li>
 
     <li 
@@ -41,63 +50,24 @@
       </svg>
       <span
         class="text-sm"
-        v-html="data.current_otu.name"
+        v-html="current.name_string"
       />
     </li>
   </ul>
 </template>
 
 <script setup>
-const data = {
-  current_otu: {
-    id: 94309,
-    name: '<i>Dichroplus elongatus</i> Giglio-Tos, 1894'
+import BreadcrumbDropdown from './BreadcrumbDropdown.vue';
+
+const props = defineProps({
+  list: {
+    type: Array,
+    default: () => []
   },
-  parents: {
-    Root: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Animalia: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Polyneoptera: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Orthopterida: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Caelifera: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Acrididea: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Acridomorpha: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Acridoidea: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Melanoplinae: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Dichroplini: {
-      otu_id: 92563,
-      taxon_id: 455472
-    },
-    Dichroplus: {
-      otu_id: 92563,
-      taxon_id: 455472
-    }
+
+  current: {
+    type: Object,
+    required: true
   }
-}
+})
 </script>

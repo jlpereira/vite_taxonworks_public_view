@@ -10,7 +10,10 @@
             justify-between 
             items-start"
         >
-          <Breadcrumb />
+          <Breadcrumb 
+            :list="otu.parents"
+            :current="taxon"
+          />
           <Autocomplete
             url="/otus/autocomplete"
             param="term"

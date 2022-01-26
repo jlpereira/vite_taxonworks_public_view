@@ -13,7 +13,7 @@ export default class OtuService {
   }
 
   static getOtu (id) {
-    return makeAPIRequest.get(`/otus/${id}`)
+    return makeAPIRequest.get(`/otus/${id}`, { params: { extend: ['parents']} })
   }
 
   static getTaxon (id) {
