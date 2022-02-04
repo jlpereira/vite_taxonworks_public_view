@@ -61,8 +61,8 @@ import BreadcrumbDropdown from './BreadcrumbDropdown.vue';
 
 const props = defineProps({
   list: {
-    type: Array,
-    default: () => []
+    type: Object,
+    default: () => ({})
   },
 
   current: {

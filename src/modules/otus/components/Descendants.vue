@@ -7,7 +7,8 @@
     </CardHeader>
     <CardContent>
       {{ otuDescendants.label }}
-      <SynonymList 
+      <SynonymList
+        v-if="otuDescendants.nomenclatural_synonyms?.length"
         class="otu-synonyms"
         :list="otuDescendants.nomenclatural_synonyms"
       />
@@ -29,7 +30,7 @@ const props = defineProps({
   }
 })
 
-const otuDescendants = ref([])
+const otuDescendants = ref({})
 
 watch(() => props.otuId, async () => {
   if (!props.otuId) { return }
