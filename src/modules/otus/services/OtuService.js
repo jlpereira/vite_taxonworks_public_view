@@ -28,4 +28,8 @@ export default class OtuService {
       }
     })
   }
+
+  static getDescendants (otuId) {
+    return makeAPIRequest.get(`/otus/${otuId}/inventory/descendants.json`)
+  }
 }

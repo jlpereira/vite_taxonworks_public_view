@@ -6,45 +6,46 @@
       </h1>
     </CardHeader>
     <CardContent>
-      <span>Current name</span>
-      <TreeView :list="taxonList" />
+      {{ otuDescendants.label }}
+      <SynonymList 
+        class="otu-synonyms"
+        :list="otuDescendants.nomenclatural_synonyms"
+      />
+      <TreeView :list="otuDescendants.descendants" />
     </CardContent>
   </Card>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import TreeView from '@/components/TreeView.vue'
+import SynonymList from '@/components/SynonymList.vue';
+import OtuService from '../services/OtuService';
 
-const taxonList = ref([
-  {
-    id: 1,
-    name: 'Child',
-    children: [
-      {
-        id: 2,
-        name: 'Another child',
-      },
-      {
-        id: 3,
-        name: 'Another child',
-      }
-    ]
-  },
-  {
-    id: 4,
-    name: 'Child',
-    children: [
-      {
-        id: 5,
-        name: 'Another child',
-      },
-      {
-        id: 6,
-        name: 'Another child',
-      }
-    ]
+const props = defineProps({
+  otuId: {
+    type: [String, Number],
+    required: true
   }
-])
+})
+
+const otuDescendants = ref([])
+
+watch(() => props.otuId, async () => {
+  if (!props.otuId) { return }
+
+  OtuService.getDescendants(props.otuId).then(({ data }) => {
+    otuDescendants.value = data
+  })
+})
 
 </script>
+
+<style scoped>
+  .otu-synonyms {
+    list-style: none;
+    border-left:1px solid rgb(100,100,100);
+    padding-left:8px;
+    padding-bottom: 8px;
+  }
+</style>

@@ -2,12 +2,22 @@
   <ul class="tree">
     <li
       v-for="item in props.list"
-      class="border-l"
+      :key="item.otu_id"
     >
-      <span>{{ item.name }}</span>
+      <router-link 
+        class="text-blue-500"
+        :to="{ name: 'otus-id', params: { id: item.otu_id } }"
+      >
+        {{ item.label }}
+      </router-link>
+      <SynonymList 
+        v-if="item.nomenclatural_synonyms.length"
+        class="pb-4"
+        :list="item.nomenclatural_synonyms"
+      />
       <TreeView
-        v-if="item.children"
-        :list="item.children"
+        v-if="item.descendants"
+        :list="item.descendants"
       />
     </li>
   </ul>
@@ -15,6 +25,7 @@
 
 <script setup>
 import TreeView from '@/components/TreeView.vue'
+import SynonymList from './SynonymList.vue'
 
 const props = defineProps({
   list: {
@@ -25,6 +36,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+
 .tree {
   list-style: none;
   margin: 0;
@@ -36,8 +48,7 @@ const props = defineProps({
 
   li {
     margin: 0;
-    padding: 0 7px;
-    line-height: 20px;
+    padding: 0px 7px;
     border-left:1px solid rgb(100,100,100);
   }
 

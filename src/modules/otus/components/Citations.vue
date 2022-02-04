@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watch } from 'vue'
 import OtuService from '../services/OtuService';
 
 const props = defineProps({
@@ -28,7 +28,7 @@ const props = defineProps({
 
 const citations = ref([])
 
-watchEffect(async () => {
+watch(() => props.taxonId, async () => {
   if (!props.taxonId) { return }
 
   citations.value = (await OtuService.getTaxonNameCitations(props.taxonId)).data
