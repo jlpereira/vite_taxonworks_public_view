@@ -32,4 +32,8 @@ export default class OtuService {
   static getDescendants (otuId) {
     return makeAPIRequest.get(`/otus/${otuId}/inventory/descendants.json`)
   }
+
+  static getTypes (otuId) {
+    return makeAPIRequest.get(`/otus/${otuId}?extend[]=type_materials_catalog_labels`)
+  }
 }

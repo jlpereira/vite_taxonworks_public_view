@@ -6,36 +6,39 @@
       </h1>
     </CardHeader>
     <CardContent>
-      <ul class="text-sm">
-        <li>
-          Type locality: <span class="font-bold">{{ data.collecting_event.label }}</span>
-        </li>
-        <li>
-          Kind of type: <span class="font-bold">{{ data.type }}</span>
-        </li>
-        <li>
-          Specimen category: <span class="font-bold">{{ data.category }}</span>
-        </li>
-        <li>
-          Repository: <span class="font-bold">{{ data.reposity.label }}</span>
-        </li>
-      </ul>
+      <p v-if="typeMaterials.length">
+        {{ typeMaterials[0].label }}
+      </p>
     </CardContent>
   </Card>
 </template>
 
 <script setup>
+import { ref, watch } from 'vue'
+import OtuService from '../services/OtuService'
 
-const data = {
-  type: 'Syntype',
-  category: 'male',
-  collecting_event: {
-    id: 123,
-    label: 'Argentina, Tucumán, Lules, San Pablo',
-  },
-  reposity: {
-    id: 123,
-    label: 'Museo Regionale di Scienze Naturali'
+const TYPE_ORDER = [
+  'neotype',
+  'holotype',
+  'neolectotype',
+  'lectotype',
+  'syntype'
+]
+
+const props = defineProps({
+  otuId: {
+    type: [String, Number],
+    required: true
   }
-}
+})
+
+const typeMaterials = ref([])
+
+watch(() => props.otuId, async () => {
+  if (!props.otuId) { return }
+
+  OtuService.getTypes(props.otuId).then(({ data }) => {
+    typeMaterials.value = data.type_materials_catalog_labels.sort((a, b) => TYPE_ORDER.indexOf(a.type_type) - TYPE_ORDER.indexOf(b.type_type))
+  })
+})
 </script>
