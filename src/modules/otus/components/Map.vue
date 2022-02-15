@@ -3,12 +3,12 @@
     <CardContent class="h-96 max-h-96">
       <l-map 
         class="h-96 max-h-96"
-        :zoom="15"
-        :center="[39.75621, -104.99404]"
+        :zoom="zoom"
+        :center="[40.102041362105034, -88.2271837772091]"
       >
         <l-geo-json 
           :geojson="geojson"
-          :options="geojsonOptions"
+          :options="GeoJSONoptions"
         />
         <l-tile-layer
           :url="tileUrl"
@@ -21,20 +21,34 @@
 
 <script setup>
 import { LMap, LGeoJson, LTileLayer } from "@vue-leaflet/vue-leaflet"
+
 const tileUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 const attribution = '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-const zoom = 15
-const geojsonOptions = {}
-const geojson = {
-    "type": "Feature",
-    "properties": {
-        "name": "Coors Field",
-        "amenity": "Baseball Stadium",
-        "popupContent": "This is where the Rockies play!"
+const zoom = 13
+const geojson = { 
+  type: "FeatureCollection",
+  features: [{
+    type: "Feature",
+    properties: {
+        name: "University of Illinois"
     },
-    "geometry": {
-        "type": "Point",
-        "coordinates": [-104.99404, 39.75621]
+    geometry: {
+        type: "Point",
+        coordinates: [-88.2271837772091, 40.102041362105034]
     }
+  }]
 }
+
+const GeoJSONoptions = {
+  onEachFeature: (feature, layer) => {
+    layer.bindTooltip(
+      `<div>${feature.properties.name}</div>`,
+      { 
+        permanent: false,
+        sticky: true
+      }
+    )
+  }
+}
+
 </script>
