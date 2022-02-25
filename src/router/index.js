@@ -7,9 +7,9 @@ import {
 import otusRoutes from '@/modules/otus/router'
 import homeRoutes from '@/modules/home/router'
 
-const { VITE_BASE_URL, VITE_ROUTER_HASH } = import.meta.env
+const { VITE_BASE_URL, VITE_ROUTER_HASH_MODE } = import.meta.env
 const router = createRouter({
-  history: VITE_ROUTER_HASH 
+  history: VITE_ROUTER_HASH_MODE 
     ? createWebHashHistory(VITE_BASE_URL)
     : createWebHistory(VITE_BASE_URL),
 
