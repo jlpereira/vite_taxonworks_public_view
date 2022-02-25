@@ -30,7 +30,7 @@ import SynonymList from './SynonymList.vue'
 const props = defineProps({
   list: {
     type: Array,
-    required: true
+    default: () => []
   }
 })
 </script>

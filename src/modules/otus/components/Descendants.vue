@@ -38,7 +38,7 @@ watch(() => props.otuId, async () => {
   OtuService.getDescendants(props.otuId).then(({ data }) => {
     otuDescendants.value = data
   })
-})
+}, { immediate: true })
 
 </script>
 

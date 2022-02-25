@@ -32,6 +32,6 @@ watch(() => props.taxonId, async () => {
   if (!props.taxonId) { return }
 
   citations.value = (await OtuService.getTaxonNameCitations(props.taxonId)).data
-})
+}, { immediate: true })
 
 </script>

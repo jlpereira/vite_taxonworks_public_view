@@ -42,6 +42,7 @@
     <div>
       <div class="container mx-auto pt-4">
         <router-view
+          v-if="taxon.id && otu.id"
           :key="route.fullPath"
           :taxon-id="taxon.id"
           :otu-id="otu.id"

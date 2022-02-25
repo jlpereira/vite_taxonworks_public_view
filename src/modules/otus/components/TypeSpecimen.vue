@@ -40,5 +40,5 @@ watch(() => props.otuId, async () => {
   OtuService.getTypes(props.otuId).then(({ data }) => {
     typeMaterials.value = data.type_materials_catalog_labels.sort((a, b) => TYPE_ORDER.indexOf(a.type_type) - TYPE_ORDER.indexOf(b.type_type))
   })
-})
+}, { immediate: true })
 </script>

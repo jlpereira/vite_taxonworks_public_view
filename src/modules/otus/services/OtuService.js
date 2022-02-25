@@ -20,13 +20,8 @@ export default class OtuService {
     return makeAPIRequest.get(`/taxon_names/${id}`)
   }
 
-  static getOtuImages (otuId) {
-    return makeAPIRequest.get('/images.json', { 
-      params: {
-        per: 5,
-        otu_id: otuId
-      }
-    })
+  static getOtuImages (otuId, params = {}) {
+    return makeAPIRequest.get(`/otus/${otuId}/inventory/images.json`, { params })
   }
 
   static getDescendants (otuId) {

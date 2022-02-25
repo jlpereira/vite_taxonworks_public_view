@@ -8,8 +8,11 @@
         >
       </div>
     </div>
-    <div class="flex flex-row justify-center overflow-x-auto">
-      <div v-for="image in images">
+    <div class="flex flex-row overflow-x-auto">
+      <div 
+        v-for="image in images"
+        :key="image.id"
+      >
         <GalleryThumbnail
           :image="image"
           @click="selectedImage = image"
@@ -32,11 +35,15 @@ const props = defineProps({
 
 const selectedImage = ref({})
 
-watch(() => props.images, newVal => {
-  if (newVal && newVal.length) {
-    selectedImage.value = newVal[0]
-  }
-}, {
-  immediate: true
-})
+watch(
+  () => props.images, 
+  newVal => {
+    if (newVal && newVal.length) {
+      selectedImage.value = newVal[0]
+    } else {
+      selectedImage.value = {}
+    }
+  }, 
+  { immediate: true }
+)
 </script>

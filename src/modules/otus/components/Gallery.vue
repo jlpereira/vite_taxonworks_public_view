@@ -20,10 +20,16 @@ const props = defineProps({
 
 const images = ref([])
 
-watch(() => props.otuId, async () => {
-  if (!props.otuId) { return }
-
-  images.value = (await OtuService.getOtuImages(props.otuId)).data
-})
-
+watch(
+  () => props.otuId,
+  async () => {
+    const params = {
+      extend: ['depictions', 'attribution'],
+      otu_scope: ['all']
+    }
+  
+    images.value = (await OtuService.getOtuImages(props.otuId, params)).data
+  },
+  { immediate: true }
+)
 </script>
