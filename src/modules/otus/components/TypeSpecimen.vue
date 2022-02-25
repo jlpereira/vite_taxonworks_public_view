@@ -22,7 +22,9 @@ const TYPE_ORDER = [
   'holotype',
   'neolectotype',
   'lectotype',
-  'syntype'
+  'syntype',
+  'paratype',
+  'paratypes'
 ]
 
 const props = defineProps({
