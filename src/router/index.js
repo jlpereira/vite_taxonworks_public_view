@@ -1,11 +1,17 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { 
+  createRouter, 
+  createWebHistory,
+  createWebHashHistory
+} from 'vue-router'
 
 import otusRoutes from '@/modules/otus/router'
 import homeRoutes from '@/modules/home/router'
 
-const { VITE_BASE_URL } = import.meta.env
+const { VITE_BASE_URL, VITE_ROUTER_HASH } = import.meta.env
 const router = createRouter({
-  history: createWebHistory(VITE_BASE_URL),
+  history: VITE_ROUTER_HASH 
+    ? createWebHashHistory(VITE_BASE_URL)
+    : createWebHistory(VITE_BASE_URL),
 
   routes: [
     ...homeRoutes,
