@@ -5,6 +5,7 @@
         <img
           class="max-h-80 h-max w-100 cursor-zoom-in m-auto"
           :src="selectedImage.original"
+          @click="isImageViewerOpen = true"
         >
       </div>
     </div>
@@ -15,16 +16,22 @@
       >
         <GalleryThumbnail
           :image="image"
-          @click="selectedImage = image"
+          @click="selectedImage = image; isImageViewerOpen = true"
         />
       </div>
     </div>
   </div>
+  <ImageViewer 
+    v-if="isImageViewerOpen"
+    :image="selectedImage"
+    @close="isImageViewerOpen = false"
+  />
 </template>
 
 <script setup>
 import { ref, watch } from 'vue'
 import GalleryThumbnail from './GalleryThumbnail.vue'
+import ImageViewer from './ImageViewer.vue';
 
 const props = defineProps({
   images: {
@@ -34,6 +41,7 @@ const props = defineProps({
 })
 
 const selectedImage = ref({})
+const isImageViewerOpen = ref(false)
 
 watch(
   () => props.images, 
