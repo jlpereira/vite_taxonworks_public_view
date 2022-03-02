@@ -15,6 +15,7 @@
             :current="taxon"
           />
           <Autocomplete
+            class="print:hidden"
             url="/otus/autocomplete"
             param="term"
             label="label_html"
@@ -28,7 +29,7 @@
           />
         </div>
 
-        <TabMenu class="m-[-1px]">
+        <TabMenu class="m-[-1px] print:hidden">
           <TabItem
             v-for="({ name, label }) in tabs"
             :key="name"
