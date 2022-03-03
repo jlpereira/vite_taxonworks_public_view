@@ -1,10 +1,17 @@
 <template>
   <div>
-    <h1 class="text-md">Depictions</h1>
+    <div 
+      v-for="depiction in depictions"
+      :key="depiction.id"
+    >
+      <p>{{ depiction.label }}</p>
+      <p>{{ depictionLabel(depiction) }}</p>
+    </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 
 const props = defineProps({
   depictions: {
@@ -12,4 +19,6 @@ const props = defineProps({
     default: () => []
   }
 })
+
+const depictionLabel = (depiction) => [depiction.caption, depiction.figure_label].join(', ')
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <div class="flex justify-center bg-black">
+    <div class="flex justify-center bg-black print:hidden">
       <div class="h-80 max-h-80 flex items-center justify-center">
         <img
           class="max-h-80 h-max w-100 cursor-zoom-in m-auto"

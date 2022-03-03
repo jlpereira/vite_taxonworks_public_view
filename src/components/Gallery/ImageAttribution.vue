@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1 class="text-md">Attribution</h1>
-    <p>{{ attribution }}</p>
+    <p>{{ attribution.label }}</p>
   </div>
 </template>
 

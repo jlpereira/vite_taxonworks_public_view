@@ -1,8 +1,16 @@
 <template>
-  <div class="fixed image__viewer bg-opacity-50 bg-black overflow-y-hidden overflow-x-hidden w-full h-full top-0 left-0 flex items-center justify-center">
-    <div class="container bg-black relative max-h-full w-full h-full md:h-auto rounded-lg shadow-sm">
+  <div 
+    class="fixed image__viewer bg-opacity-50 bg-black overflow-y-hidden overflow-x-hidden w-full h-full top-0 left-0 flex items-center justify-center"
+    @click="emit('close')"
+  >
+    <div 
+      class="container bg-black relative max-h-full w-full h-full md:h-auto rounded-lg shadow-sm"
+      @click.stop
+    >
+      <VSpinner v-if="isLoading"/>
       <div class="relative p-4 rounded-t-lg">
         <img
+          ref="imageElement"
           class="mx-auto cursor-zoom-out max-w-7 w-auto max-w-full max-h-[80vh]"
           :src="image.original"
           @click="emit('close')"
@@ -20,33 +28,26 @@
         />
       </div>
 
-      <div class="bg-white attributions bottom-0 h-40 p-4 rounded-b-lg">
-        <ImageAttribution :attribution="attribution" />
+      <div class="bg-white attributions bottom-0 h-40 p-4 rounded-b-lg align-middle flex justify-between flex-col text-center">
+        <ImageDepictions :depictions="image.depictions" />
+        <ImageAttribution :attribution="image.attribution" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 import ImageAttribution from './ImageAttribution.vue';
+import ImageDepictions from './ImageDepictions.vue';
 import ControlNextImage from './ControlImageNext.vue'
 import ControlPreviousImage from './ControlImagePrevious.vue'
+import VSpinner from '../VSpinner.vue';
 
 const props = defineProps({
   image: {
     type: Object,
     required: true
-  },
-
-  depictions: {
-    type: Array,
-    default: () => []
-  },
-
-  attribution: {
-    type: String,
-    default: null
   },
 
   next: {
@@ -84,10 +85,18 @@ const handleKeyboard = ({ key }) => {
   }
 }
 
+const imageElement = ref(null)
+const isLoading = ref(false)
 
 document.addEventListener('keyup', handleKeyboard)
 
+onMounted(() => imageElement.value.addEventListener('load', () => isLoading.value = false))
 onUnmounted(() => document.removeEventListener('keyup', handleKeyboard))
+
+watch(
+  () => props.image, 
+  () => isLoading.value = true
+)
 </script>
 
 <style>
