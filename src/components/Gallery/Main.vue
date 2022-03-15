@@ -16,6 +16,7 @@
       >
         <GalleryThumbnail
           :image="image"
+          :title="image.depictions.map(d => [d.caption, d.figure_label].join(', ')).join(';')"
           @click="
             galleryIndex = index;
             isImageViewerOpen = true
