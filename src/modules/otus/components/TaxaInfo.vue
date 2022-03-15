@@ -3,10 +3,16 @@
     <h2 class="text-1xl text-gray-700 capitalize">
       {{ taxon.rank }}
     </h2>
-    <h1 
-      class="text-2xl"
-      v-html="taxon.cached_html"
-    />
+    <h1 class="text-2xl">
+      <span v-html="taxon.original_combination" />
+      <span 
+        :class="['ml-2', taxon.cached_is_valid
+          ? 'text-green-600'
+          : 'text-red-600'
+        ]"
+        v-html="status"
+      />
+    </h1>
     <h2 class="text-1xl text-gray-700">
       [Here goes common name]
     </h2>
@@ -14,6 +20,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 
 const props = defineProps({
   taxon: {
@@ -21,5 +28,10 @@ const props = defineProps({
     default: () => {}
   }
 })
+
+const status = computed(() => props.taxon.cached_is_valid
+  ? '&#10003;'
+  : '&#10005;'
+)
 
 </script>
