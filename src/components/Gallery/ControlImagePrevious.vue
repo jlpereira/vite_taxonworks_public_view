@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="w-20 h-20 rounded-full text-white cursor-pointer"
+    class="w-20 h-20 rounded-full text-black cursor-pointer"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

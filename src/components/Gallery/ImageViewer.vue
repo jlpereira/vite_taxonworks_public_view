@@ -4,7 +4,7 @@
     @click="emit('close')"
   >
     <div 
-      class="container bg-black relative max-h-full w-full h-full md:h-auto rounded-lg shadow-sm"
+      class="container bg-white relative max-h-full w-full h-full md:h-auto rounded-lg shadow-sm"
       @click.stop
     >
       <VSpinner v-if="isLoading"/>
@@ -15,23 +15,23 @@
           :src="image.original"
           @click="emit('close')"
         >
-
-        <ControlNextImage
-          v-if="next"
-          class="right-0 absolute my-auto top-1/2 -translate-y-1/2"
-          @click="emit('next')"
-        />
-        <ControlPreviousImage 
-          v-if="previous"
-          class="left-0 absolute my-auto top-1/2 -translate-y-1/2"
-          @click="emit('previous')"
-        />
       </div>
 
       <div class="bg-white attributions bottom-0 h-40 p-4 rounded-b-lg align-middle flex justify-between flex-col text-center">
         <ImageDepictions :depictions="image.depictions" />
         <ImageAttribution :attribution="image.attribution" />
       </div>
+
+      <ControlNextImage
+        v-if="next"
+        class="right-0 absolute my-auto top-1/2 -translate-y-1/2"
+        @click="emit('next')"
+      />
+      <ControlPreviousImage 
+        v-if="previous"
+        class="left-0 absolute my-auto top-1/2 -translate-y-1/2"
+        @click="emit('previous')"
+      />
     </div>
   </div>
 </template>
