@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { depictionLabel } from './utils/depictions'
 
 const props = defineProps({
   depictions: {
@@ -20,5 +20,4 @@ const props = defineProps({
   }
 })
 
-const depictionLabel = (depiction) => [depiction.caption, depiction.figure_label].join(', ')
 </script>

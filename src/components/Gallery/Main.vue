@@ -16,7 +16,7 @@
       >
         <GalleryThumbnail
           :image="image"
-          :title="image.depictions.map(d => [d.caption, d.figure_label].join(', ')).join(';')"
+          :title="image.depictions.map(d => depictionLabel(d)).join(';')"
           @click="
             galleryIndex = index;
             isImageViewerOpen = true
@@ -39,6 +39,7 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue'
+import { depictionLabel } from './utils/depictions'
 import GalleryThumbnail from './GalleryThumbnail.vue'
 import ImageViewer from './ImageViewer.vue';
 
