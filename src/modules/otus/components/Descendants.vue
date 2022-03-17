@@ -2,7 +2,7 @@
   <Card>
     <CardHeader>
       <h1 class="text-md">
-        Descendants
+        Descendants and synonyms
       </h1>
     </CardHeader>
     <CardContent>
