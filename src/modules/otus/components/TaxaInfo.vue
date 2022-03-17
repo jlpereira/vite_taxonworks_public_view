@@ -29,13 +29,15 @@ const props = defineProps({
 
 const isValid = computed(() => props.taxon.id === props.taxon.cached_valid_taxon_name_id)
 
-const taxonNameString = computed(() => isValid.value
-  ? props.taxon.cached_html + ' ' + props.taxon.cached_author_year
-  : props.taxon.original_combination
+const taxonNameString = computed(() => 
+  isValid.value
+    ? props.taxon.cached_html + ' ' + props.taxon.cached_author_year
+    : props.taxon.original_combination
 )
-const status = computed(() => props.taxon.cached_is_valid
-  ? '&#10003;'
-  : '&#10005;'
+const status = computed(() => 
+  props.taxon.cached_is_valid
+    ? '&#10003;'
+    : '&#10005;'
 )
 
 const statusStyle = computed(() => 
