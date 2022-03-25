@@ -79,6 +79,9 @@ watch(routeParams, async (newParams, oldParams) => {
 
   if (newParams.id == oldParams?.id) { return }
 
+  otu.value = {}
+  taxon.value = {}
+
   otu.value = (await OtuService.getOtu(route.params.id)).data
   taxon.value = (await OtuService.getTaxon(otu.value.taxon_name_id)).data
 

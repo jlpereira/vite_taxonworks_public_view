@@ -181,13 +181,16 @@ const init = () => {
 
 const calculateSpinnerStyle = element => {
   const size = element.getBoundingClientRect()
+  const computedStyle = window.getComputedStyle(element, null)
+  const paddingLeft = parseInt(computedStyle.getPropertyValue('padding-left'), 10)
+  const paddingRight = parseInt(computedStyle.getPropertyValue('padding-right'), 10)
+  const paddingTop = parseInt(computedStyle.getPropertyValue('padding-top'), 10)
+  const paddingBottom = parseInt(computedStyle.getPropertyValue('padding-bottom'), 10)
 
   return {
     position: 'absolute',
-    width: size.width + 'px',
-    height: size.height + 'px',
-    top: size.top,
-    left: size.left
+    width: size.width - paddingLeft - paddingRight + 'px',
+    height: size.height - paddingTop - paddingBottom + 'px',
   }
 }
 
@@ -231,7 +234,7 @@ const checkResize = () => {
   background-image: none !important;
   background-color: #fff;
   align-items: center;
-  z-index: 999999;
+  z-index: 9999;
   height: 100%;
   opacity: 0.9;
 }

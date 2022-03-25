@@ -42,7 +42,6 @@ import ImageAttribution from './ImageAttribution.vue';
 import ImageDepictions from './ImageDepictions.vue';
 import ControlNextImage from './ControlImageNext.vue'
 import ControlPreviousImage from './ControlImagePrevious.vue'
-import VSpinner from '../VSpinner.vue';
 
 const props = defineProps({
   image: {
@@ -101,6 +100,6 @@ watch(
 
 <style>
 .image__viewer {
-  z-index: 2000;
+  z-index: 10000;
 }
 </style>

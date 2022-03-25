@@ -2,9 +2,10 @@
   <div>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div class="grid grid-cols-1 gap-4 auto-rows-min">
-        <component 
+        <component
           :is="component"
           v-for="component in componentsLayout.left"
+          :key="component"
           :otu-id="otuId"
           :taxon-id="taxonId"
         />
@@ -13,6 +14,7 @@
         <component 
           :is="component"
           v-for="component in componentsLayout.right"
+          :key="component"
           :otu-id="otuId"
           :taxon-id="taxonId"
         />

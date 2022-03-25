@@ -31,4 +31,8 @@ export default class OtuService {
   static getTypes (otuId) {
     return makeAPIRequest.get(`/otus/${otuId}?extend[]=type_materials_catalog_labels`)
   }
+
+  static getGeoJSON (otuId) {
+    return makeAPIRequest.get(`/otus/${otuId}/inventory/distribution`)
+  }
 }

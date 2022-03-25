@@ -1,48 +1,40 @@
 <template>
   <Card>
     <CardContent class="h-96 max-h-96">
-      <l-map 
+      <VSpinner v-if="isLoading"/>
+      <VMap
+        ref="map"
         class="h-96 max-h-96"
         :zoom="zoom"
-        :center="[40.102041362105034, -88.2271837772091]"
-      >
-        <l-geo-json 
-          :geojson="geojson"
-          :options="GeoJSONoptions"
-        />
-        <l-tile-layer
-          :url="tileUrl"
-          :attribution="attribution"
-        />
-      </l-map>
+        :geojson="geojson"
+        :geojson-options="GeoJSONoptions"
+        @geojson:ready="isLoading = false"
+      />
     </CardContent>
   </Card>
 </template>
 
 <script setup>
-import { LMap, LGeoJson, LTileLayer } from "@vue-leaflet/vue-leaflet"
+import { ref, watch } from "vue";
+import VMap from '@/components/VMap.vue'
+import OtuService from "../services/OtuService";
 
-const tileUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-const attribution = '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-const zoom = 13
-const geojson = { 
-  type: "FeatureCollection",
-  features: [{
-    type: "Feature",
-    properties: {
-        name: "University of Illinois"
-    },
-    geometry: {
-        type: "Point",
-        coordinates: [-88.2271837772091, 40.102041362105034]
-    }
-  }]
-}
+const props = defineProps({
+  otuId: {
+    type: [String, Number],
+    required: true
+  }
+})
+
+const zoom = 2
+const geojson = ref(null)
+const isLoading = ref(true)
 
 const GeoJSONoptions = {
   onEachFeature: (feature, layer) => {
+    if (!feature.properties?.base?.label) return
     layer.bindTooltip(
-      `<div>${feature.properties.name}</div>`,
+      `<div>${feature.properties.base.label}</div>`,
       { 
         permanent: false,
         sticky: true
@@ -50,5 +42,22 @@ const GeoJSONoptions = {
     )
   }
 }
+
+watch(
+  () => props.otuId,
+  (newId, oldId) => {
+    if(newId === oldId) return
+    isLoading.value = true
+
+    OtuService.getGeoJSON(props.otuId).then(({ data }) => {
+      geojson.value = data.request_too_large
+        ? null
+        : data
+    })
+  },
+  { immediate: true }
+)
+
+
 
 </script>

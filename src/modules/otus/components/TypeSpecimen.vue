@@ -36,7 +36,8 @@ const props = defineProps({
 
 const typeMaterials = ref([])
 
-watch(() => props.otuId, async () => {
+watch(
+  () => props.otuId, async () => {
   if (!props.otuId) { return }
 
   OtuService.getTypes(props.otuId).then(({ data }) => {
