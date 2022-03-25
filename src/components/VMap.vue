@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import L from 'leaflet'
+
 import { 
   computed,
   onMounted,
@@ -15,6 +15,19 @@ import {
   watch,
   nextTick
 } from 'vue'
+
+import L from 'leaflet'
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
+import iconUrl from 'leaflet/dist/images/marker-icon.png'
+import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
+
+delete L.Icon.Default.prototype._getIconUrl
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: iconRetina,
+  iconUrl: iconUrl,
+  shadowUrl: shadowUrl
+})
 
 const props = defineProps({
   zoomAnimate: {
@@ -45,11 +58,6 @@ const props = defineProps({
   geojson: {
     type: Object,
     default: undefined
-  },
-
-  fitBounds: {
-    type: Boolean,
-    default: true
   },
 
   zoomBounds: {
@@ -113,7 +121,7 @@ const resizeMap = () => {
 
   mapObject.invalidateSize()
   nextTick(() => {
-    if (Object.keys(bounds).length && props.fitBounds) {
+    if (Object.keys(bounds).length) {
       mapObject.fitBounds(bounds, fitBoundsOptions.value)
     }
   })
