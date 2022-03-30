@@ -7,6 +7,10 @@
 
 <script setup>
 
+const {
+  VITE_MAP_SERVER_TILES
+} = import.meta.env
+
 import { 
   computed,
   onMounted,
@@ -78,8 +82,7 @@ let observeMap
 let geoJSONGroup = new L.FeatureGroup()
 const leafletMap = ref(null)
 const tiles = {
-  osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  osm: L.tileLayer(VITE_MAP_SERVER_TILES, {
     maxZoom: 18
   })
 }
