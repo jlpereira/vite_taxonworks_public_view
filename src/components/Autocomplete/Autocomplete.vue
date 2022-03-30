@@ -17,9 +17,13 @@
     <input
       v-model="typed"
       type="text"
-      class="autocomplete__input block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
+      class="autocomplete__input block p-2 pl-10 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
       :placeholder="placeholder"
     >
+    <AutocompleteSpinner
+      v-if="isSearching"
+      class="absolute top-2 right-2 h-5 w-5"
+    />
 
     <ul
       v-if="list.length"
@@ -29,7 +33,7 @@
         v-for="item in list"
         :key="item.id"
         class="p-2 border-b bg-white text-sm cursor-pointer hover:bg-gray-200"
-        @click="emit('select', item)"
+        @click="selectItem(item)"
       >
         <span v-html="item[label]" />
       </li>
@@ -40,6 +44,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { makeAPIRequest } from '@/utils/request'
+import AutocompleteSpinner from './AutocompleteSpinner.vue'
 
 const props = defineProps({
   placeholder: {
@@ -66,8 +71,9 @@ const props = defineProps({
 const emit = defineEmits(['select'])
 const typed = ref('')
 const list = ref([])
+const isSearching = ref(false)
 
-const delay = 1000
+const delay = 500
 let timeout
 
 watch(typed, newVal => {
@@ -75,11 +81,13 @@ watch(typed, newVal => {
 
   if (newVal.length) {
     timeout = setTimeout(() => {
+      isSearching.value = true
       makeAPIRequest.get(props.url, {
         params: {
           [props.param]: typed.value
         }
       }).then(({ data }) => {
+        isSearching.value = false
         list.value = data
       })
     }, delay)
@@ -87,6 +95,11 @@ watch(typed, newVal => {
     list.value = []
   }
 })
+
+const selectItem = item => {
+  emit('select', item)
+  typed.value = ''
+}
 
 
 </script>

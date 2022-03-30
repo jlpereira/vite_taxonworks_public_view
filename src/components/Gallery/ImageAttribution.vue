@@ -8,8 +8,8 @@
 
 const props = defineProps({
   attribution: {
-    type: String,
-    default: null
+    type: Object,
+    default: () => ({})
   }
 })
 </script>
