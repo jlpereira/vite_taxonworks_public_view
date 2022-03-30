@@ -7,7 +7,7 @@
       class="container bg-white relative max-h-full w-full h-full md:h-auto rounded-lg shadow-sm"
       @click.stop
     >
-      <VSpinner v-if="isLoading"/>
+      <VSpinner v-if="isLoading" />
       <div class="relative p-4 rounded-t-lg">
         <img
           ref="imageElement"
@@ -17,9 +17,15 @@
         >
       </div>
 
-      <div class="bg-white attributions bottom-0 h-40 p-4 rounded-b-lg align-middle flex justify-between flex-col text-center">
-        <ImageDepictions :depictions="image.depictions" />
-        <ImageAttribution :attribution="image.attribution" />
+      <div class="bg-white attributions bottom-0 h-32 p-4 rounded-b-lg align-middle flex justify-between flex-col text-center">
+        <ImageDepictions
+          class="my-auto"
+          :depictions="image.depictions" 
+        />
+        <ImageAttribution
+          class="my-auto"
+          :attribution="image.attribution"
+        />
       </div>
 
       <ControlNextImage
