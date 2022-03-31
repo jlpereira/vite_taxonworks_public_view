@@ -2,22 +2,30 @@
   <div>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div class="grid grid-cols-1 gap-4 auto-rows-min">
-        <component
-          :is="component"
-          v-for="component in componentsLayout.left"
+        <template
+          v-for="({ component, available }) in componentsLayout.left"
           :key="component"
-          :otu-id="otuId"
-          :taxon-id="taxonId"
-        />
+        >
+          <component
+            :is="component"
+            v-if="!available || isComponentForRank(available, taxonRank)"
+            :otu-id="otuId"
+            :taxon-id="taxonId"
+          />
+        </template>
       </div>
       <div class="grid grid-cols-1 auto-rows-min gap-4">
-        <component 
-          :is="component"
-          v-for="component in componentsLayout.right"
+        <template
+          v-for="({ component, available }) in componentsLayout.right"
           :key="component"
-          :otu-id="otuId"
-          :taxon-id="taxonId"
-        />
+        >
+          <component
+            :is="component"
+            v-if="!available || isComponentForRank(available, taxonRank)"
+            :otu-id="otuId"
+            :taxon-id="taxonId"
+          />
+        </template>
       </div>
     </div>
   </div>
@@ -29,16 +37,20 @@ import OtuTypeSpecimen from '@/modules/otus/components/TypeSpecimen.vue'
 import OtuCitations from '@/modules/otus/components/Citations.vue'
 import OtuMap from '@/modules/otus/components/Map.vue'
 import OtuDescendants from '@/modules/otus/components/Descendants.vue'
+import { SPECIES_GROUP } from '@/constants/rankGroups'
 
 const componentsLayout = {
   left: [
-    OtuGallery,
-    OtuTypeSpecimen,
-    OtuCitations
+    { component: OtuGallery },
+    { 
+      component: OtuTypeSpecimen,
+      available: [SPECIES_GROUP] 
+    },
+    { component: OtuCitations }
   ],
   right: [
-    OtuMap,
-    OtuDescendants
+    { component: OtuMap },
+    { component: OtuDescendants }
   ]
 }
 
@@ -48,9 +60,17 @@ const props = defineProps({
     required: true
   },
 
+  taxonRank: {
+    type: String,
+    required: true
+  },
+
   otuId: {
     type: [Number, String],
     required: true
   }
 })
+
+const isComponentForRank = (available, rankString) => available.some(rankGroup => rankString.includes(rankGroup))
+
 </script>
