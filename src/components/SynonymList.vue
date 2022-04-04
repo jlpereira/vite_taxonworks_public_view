@@ -4,7 +4,7 @@
       v-for="synonym in props.list"
       :key="synonym"
     >
-      <span class="text-orange-500">Synonym</span> {{ synonym }}
+      <span class="text-orange-500">=</span> {{ synonym }}
     </li>
   </ul>
 </template>
