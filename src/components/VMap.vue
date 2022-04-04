@@ -7,10 +7,6 @@
 
 <script setup>
 
-const {
-  VITE_MAP_SERVER_TILES
-} = import.meta.env
-
 import { 
   computed,
   onMounted,
@@ -32,6 +28,10 @@ L.Icon.Default.mergeOptions({
   iconUrl: iconUrl,
   shadowUrl: shadowUrl
 })
+
+const {
+  VITE_MAP_SERVER_TILES
+} = import.meta.env
 
 const props = defineProps({
   zoomAnimate: {
@@ -101,7 +101,7 @@ watch(
   newVal => {
     geoJSONGroup.clearLayers()
     setGeoJSON(newVal)
-  }, 
+  },
   { deep: true }
 )
 

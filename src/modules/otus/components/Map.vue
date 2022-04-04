@@ -18,6 +18,7 @@
 import { ref, watch } from "vue";
 import VMap from '@/components/VMap.vue'
 import OtuService from "../services/OtuService";
+import { generateHue } from '@/utils/color.js'
 
 const props = defineProps({
   otuId: {
@@ -27,7 +28,7 @@ const props = defineProps({
 })
 
 const zoom = 2
-const geojson = ref(null)
+const geojson = ref(undefined)
 const isLoading = ref(true)
 
 const GeoJSONoptions = {
@@ -40,6 +41,18 @@ const GeoJSONoptions = {
         sticky: true
       }
     )
+  },
+
+  style: (feature) => {
+    if (feature.properties?.base?.type === 'AssertedDistribution') {
+      return { 
+        color: generateHue(5),
+        weight: 1,
+        dashArray: '3',
+        dashOffset: '3',
+        fillOpacity: 0.5
+      }
+    }
   }
 }
 
