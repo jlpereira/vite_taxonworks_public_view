@@ -1,13 +1,12 @@
 <template>
   <Card>
     <CardContent class="h-96 max-h-96">
-      <VSpinner v-if="isLoading"/>
+      <VSpinner v-if="isLoading" />
       <VMap
         ref="map"
         class="h-96 max-h-96"
         :zoom="zoom"
         :geojson="geojson"
-        :geojson-options="GeoJSONoptions"
         @geojson:ready="isLoading = false"
       />
     </CardContent>
@@ -16,9 +15,8 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import VMap from '@/components/VMap.vue'
+import VMap from '@/components/Map/VMap.vue'
 import OtuService from "../services/OtuService";
-import { generateHue } from '@/utils/color.js'
 
 const props = defineProps({
   otuId: {
@@ -30,31 +28,6 @@ const props = defineProps({
 const zoom = 2
 const geojson = ref(undefined)
 const isLoading = ref(true)
-
-const GeoJSONoptions = {
-  onEachFeature: (feature, layer) => {
-    if (!feature.properties?.base?.label) return
-    layer.bindTooltip(
-      `<div>${feature.properties.base.label}</div>`,
-      { 
-        permanent: false,
-        sticky: true
-      }
-    )
-  },
-
-  style: (feature) => {
-    if (feature.properties?.base?.type === 'AssertedDistribution') {
-      return { 
-        color: generateHue(5),
-        weight: 1,
-        dashArray: '3',
-        dashOffset: '3',
-        fillOpacity: 0.5
-      }
-    }
-  }
-}
 
 watch(
   () => props.otuId,
@@ -70,7 +43,5 @@ watch(
   },
   { immediate: true }
 )
-
-
 
 </script>

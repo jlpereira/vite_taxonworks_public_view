@@ -15,7 +15,7 @@
             :current="taxon"
           />
           <Autocomplete
-            class="print:hidden"
+            class="print:hidden ml-2"
             url="/otus/autocomplete"
             param="term"
             label="label_html"

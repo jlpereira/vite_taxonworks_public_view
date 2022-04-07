@@ -34,10 +34,11 @@
 <script setup>
 import OtuGallery from '@/modules/otus/components/Gallery.vue'
 import OtuTypeSpecimen from '@/modules/otus/components/TypeSpecimen.vue'
+import OtuTypeSpecies from '@/modules/otus/components/TypeSpecies.vue'
 import OtuCitations from '@/modules/otus/components/Citations.vue'
 import OtuMap from '@/modules/otus/components/Map.vue'
 import OtuDescendants from '@/modules/otus/components/Descendants.vue'
-import { SPECIES_GROUP } from '@/constants/rankGroups'
+import { GENUS_GROUP, SPECIES_GROUP } from '@/constants/rankGroups'
 
 const componentsLayout = {
   left: [
@@ -45,6 +46,10 @@ const componentsLayout = {
     { 
       component: OtuTypeSpecimen,
       available: [SPECIES_GROUP] 
+    },
+    {
+      component: OtuTypeSpecies,
+      available: [GENUS_GROUP]
     },
     { component: OtuCitations }
   ],
@@ -54,7 +59,7 @@ const componentsLayout = {
   ]
 }
 
-const props = defineProps({
+defineProps({
   taxonId: {
     type: [Number, String],
     required: true

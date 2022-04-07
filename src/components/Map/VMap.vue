@@ -20,6 +20,7 @@ import L from 'leaflet'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
 import iconUrl from 'leaflet/dist/images/marker-icon.png'
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
+import geojsonDefaultOptions from './utils/geojsonOptions'
 
 delete L.Icon.Default.prototype._getIconUrl
 
@@ -146,6 +147,7 @@ onUnmounted(() => {
 const setGeoJSON = geojson => {
   if (geojson) {
     L.geoJSON(geojson, {
+      ...geojsonDefaultOptions,
       ...props.geojsonOptions
     }).addTo(geoJSONGroup)
 
@@ -156,3 +158,12 @@ const setGeoJSON = geojson => {
 }
 
 </script>
+
+<style>
+.leaflet-marker-icon {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  opacity: 0.5;
+}
+</style>

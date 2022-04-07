@@ -13,11 +13,15 @@ export default class OtuService {
   }
 
   static getOtu (id) {
-    return makeAPIRequest.get(`/otus/${id}`, { params: { extend: ['parents']} })
+    return makeAPIRequest.get(`/otus/${id}`, { params: { extend: ['parents'] } })
   }
 
   static getTaxon (id) {
     return makeAPIRequest.get(`/taxon_names/${id}`)
+  }
+
+  static getTaxonTypeSpecies (id) {
+    return makeAPIRequest.get(`/taxon_names/${id}`, { params: { extend: ['type_taxon_name_relationship'] } })
   }
 
   static getOtuImages (otuId, params = {}) {

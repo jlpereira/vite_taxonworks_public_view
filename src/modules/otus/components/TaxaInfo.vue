@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ invisible: !taxon.id }">
     <h2 class="text-1xl text-gray-700 capitalize">
       {{ taxon.rank || taxon.type }}
     </h2>

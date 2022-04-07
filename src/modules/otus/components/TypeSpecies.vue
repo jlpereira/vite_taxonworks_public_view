@@ -1,47 +1,37 @@
 <template>
-  <Card class="p-4">
+  <Card>
     <CardHeader>
-      <h1 class="text-xl">
-        Type specimen
+      <h1 class="text-md">
+        Type species
       </h1>
     </CardHeader>
-    <p>
-      <NuxtLink
-        class="text-blue-600"
-        :to="{
-          name: 'otus-id',
-          params: { id: data.objective.id }
-        }"
-      >
-        {{ data.objective.name }}
-      </NuxtLink>
-
-      {{ data.type }}
-
-      <NuxtLink
-        class="text-blue-600"
-        :to="{
-          name: 'otus-id',
-          params: { id: data.objective.id }
-        }"
-      >
-        {{ data.objective.name }}
-      </NuxtLink>
-    </p>
+    <CardContent>
+      <p>
+        <span v-html="typeSpecies.subject_object_tag" />
+      </p>
+    </CardContent>
   </Card>
 </template>
 
 <script setup>
+import { ref, watch } from 'vue'
+import OtuService from '../services/OtuService'
 
-const data = {
-  objective: {
-    id: 1234,
-    name: "Dichroplus arrogans (Stal, 1861)",
-  },
-  subject: {
-    id: 1234,
-    name: "Dichroplus (Stal, 1873)",
-  },
-  type: 'Type species by subsequent designation'
-}
+const props = defineProps({
+  taxonId: {
+    type: [String, Number],
+    required: true
+  }
+})
+
+const typeSpecies = ref({})
+
+watch(
+  () => props.taxonId, async () => {
+  if (!props.taxonId) { return }
+
+  OtuService.getTaxonTypeSpecies(props.taxonId).then(({ data }) => {
+    typeSpecies.value = data.type_taxon_name_relationship
+  })
+}, { immediate: true })
 </script>
