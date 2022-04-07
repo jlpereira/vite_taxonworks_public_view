@@ -7,7 +7,7 @@
       >
         <img
           class="mr-3 h-10"
-          :src="VITE_PAGE_HEADER_LOGO"
+          :src="logoUrl"
         >
       </a>
 
@@ -83,7 +83,9 @@
 
 <script setup>
 
-const { VITE_PAGE_HEADER_LOGO } = import.meta.env
+import { computed } from 'vue'
+const { VITE_PAGE_HEADER_LOGO, VITE_BASE_URL } = import.meta.env
+const logoUrl = computed(() => VITE_BASE_URL + VITE_PAGE_HEADER_LOGO)
 
 const navItems = [
   {
