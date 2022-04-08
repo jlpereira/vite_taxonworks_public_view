@@ -6,7 +6,9 @@
       >
         <div 
           class="
-            flex 
+            flex
+            flex-col-reverse
+            md:flex-row
             justify-between 
             items-start"
         >
@@ -15,7 +17,13 @@
             :current="taxon"
           />
           <Autocomplete
-            class="print:hidden ml-2"
+            class="
+              print:hidden 
+              min-w-full 
+              mb-2
+              md:min-w-fit
+              md:ml-2
+              md:mb-0"
             url="/otus/autocomplete"
             param="term"
             label="label_html"

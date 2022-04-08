@@ -4,7 +4,7 @@
     @click="emit('close')"
   >
     <div 
-      class="container bg-white relative max-h-full w-full h-full md:h-auto rounded-lg shadow-sm"
+      class="container bg-white relative max-h-full w-full md:h-auto rounded-lg shadow-sm"
       @click.stop
     >
       <VSpinner v-if="isLoading" />
