@@ -31,7 +31,7 @@ const isValid = computed(() => props.taxon.id === props.taxon.cached_valid_taxon
 
 const taxonNameString = computed(() => 
   isValid.value
-    ? props.taxon.cached_html + ' ' + props.taxon.cached_author_year
+    ? props.taxon.cached_html + ' ' + (props.taxon.cached_author_year || '')
     : props.taxon.original_combination
 )
 const status = computed(() => 
