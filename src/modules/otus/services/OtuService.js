@@ -29,11 +29,11 @@ export default class OtuService {
   }
 
   static getDescendants (otuId) {
-    return makeAPIRequest.get(`/otus/${otuId}/inventory/descendants.json`)
+    return makeAPIRequest.get(`/otus/${otuId}/inventory/taxonomy.json`)
   }
 
   static getTypes (otuId) {
-    return makeAPIRequest.get(`/otus/${otuId}?extend[]=type_materials_catalog_labels`)
+    return makeAPIRequest.get(`/otus/${otuId}/inventory/type_material.json?extend[]=type_materials_catalog_labels`)
   }
 
   static getGeoJSON (otuId) {
