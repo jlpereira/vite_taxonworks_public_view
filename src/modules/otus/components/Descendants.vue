@@ -6,13 +6,12 @@
       </h1>
     </CardHeader>
     <CardContent>
-      {{ otuDescendants.label }}
-      <SynonymList
-        v-if="otuDescendants.nomenclatural_synonyms?.length"
-        class="otu-synonyms"
-        :list="otuDescendants.nomenclatural_synonyms"
-      />
-      <TreeView :list="otuDescendants.descendants" />
+      <ul class="tree">
+        <TreeView
+          v-if="taxonomy"
+          :taxonomy="taxonomy" 
+        />
+      </ul>
     </CardContent>
   </Card>
 </template>
@@ -20,7 +19,6 @@
 <script setup>
 import { ref, watch } from 'vue';
 import TreeView from '@/components/TreeView.vue'
-import SynonymList from '@/components/SynonymList.vue';
 import OtuService from '../services/OtuService';
 
 const props = defineProps({
@@ -30,13 +28,13 @@ const props = defineProps({
   }
 })
 
-const otuDescendants = ref({})
+const taxonomy = ref(null)
 
 watch(() => props.otuId, async () => {
   if (!props.otuId) { return }
 
-  OtuService.getDescendants(props.otuId).then(({ data }) => {
-    otuDescendants.value = data
+  OtuService.getDescendants(props.otuId, { max_descendants_depth: 1 }).then(({ data }) => {
+    taxonomy.value = data
   })
 }, { immediate: true })
 

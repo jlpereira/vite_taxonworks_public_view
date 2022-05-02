@@ -1,38 +1,81 @@
 <template>
-  <ul class="tree">
-    <li
-      v-for="item in props.list"
-      :key="item.otu_id"
+  <li
+    v-if="Object.keys(taxonomy).length"
+    :key="taxonomy.otu_id"
+  >
+    <button
+      v-if="!taxonomy.leaf_node"
+      type="button"
+      class="tree__expand"
+      @click="isTreeVisible = !isTreeVisible"
     >
-      <router-link 
-        class="text-blue-500"
-        :to="{ name: 'otus-id', params: { id: item.otu_id } }"
+      <span v-if="isTreeVisible">-</span>
+      <span v-else>+</span>
+    </button>
+    <router-link 
+      class="text-blue-500"
+      :to="{ name: 'otus-id', params: { id: taxonomy.otu_id } }"
+    >
+      {{ taxonomy.label }}
+    </router-link>
+    <SynonymList 
+      v-if="taxonomy.nomenclatural_synonyms.length"
+      class="pb-4"
+      :list="taxonomy.nomenclatural_synonyms"
+    />
+    <ul
+      v-if="descendants.length"
+      class="tree"
+    >
+      <template 
+        v-for="item in descendants"
+        :key="item.otu_id"
       >
-        {{ item.label }}
-      </router-link>
-      <SynonymList 
-        v-if="item.nomenclatural_synonyms.length"
-        class="pb-4"
-        :list="item.nomenclatural_synonyms"
-      />
-      <TreeView
-        v-if="item.descendants"
-        :list="item.descendants"
-      />
-    </li>
-  </ul>
+        <TreeView
+          v-if="isTreeVisible"
+          :taxonomy="item"
+        />
+      </template>
+    </ul>
+  </li>
 </template>
 
 <script setup>
 import TreeView from '@/components/TreeView.vue'
 import SynonymList from './SynonymList.vue'
+import OtuService from '@/modules/otus/services/OtuService';
+import { ref, watch } from 'vue'
 
 const props = defineProps({
-  list: {
-    type: Array,
-    default: () => []
+  taxonomy: {
+    type: Object,
+    required: true
+  },
+
+  level: {
+    type: Number,
+    default: 1
   }
 })
+
+const isTreeVisible = ref(!!props.taxonomy.descendants.length)
+const descendants = ref([...props.taxonomy.descendants])
+
+watch(
+  isTreeVisible,
+  (newVal) => {
+    if (newVal) {
+      loadDescendants()
+    }
+  }
+)
+
+const loadDescendants = () => {
+  OtuService.getDescendants(props.taxonomy.otu_id, { max_descendants_depth: 1 }).then(({ data }) => {
+    descendants.value = data.descendants
+  })
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -47,6 +90,7 @@ const props = defineProps({
   }
 
   li {
+    position: relative;
     margin: 0;
     padding: 0px 7px;
     border-left:1px solid rgb(100,100,100);
@@ -70,6 +114,17 @@ const props = defineProps({
 
   li:last-child:before {
     border-left:1px solid rgb(100,100,100);   
+  }
+
+  &__expand {
+    top: 4px;
+    left: -8px;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    line-height: 12px;
+    border: 1px solid black;
+    background-color: white;
   }
 }
 
