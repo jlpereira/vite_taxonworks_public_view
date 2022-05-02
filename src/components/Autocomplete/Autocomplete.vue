@@ -57,9 +57,14 @@ const props = defineProps({
     required: true
   },
 
-  param: {
+  queryParam: {
     type: String,
     default: 'term'
+  },
+
+  params: {
+    type: Object,
+    default: () => ({})
   },
 
   label: {
@@ -84,7 +89,8 @@ watch(typed, newVal => {
       isSearching.value = true
       makeAPIRequest.get(props.url, {
         params: {
-          [props.param]: typed.value
+          ...props.params,
+          [props.queryParam]: typed.value,
         }
       }).then(({ data }) => {
         isSearching.value = false

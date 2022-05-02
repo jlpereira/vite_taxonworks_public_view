@@ -25,8 +25,9 @@
               md:ml-2
               md:mb-0"
             url="/otus/autocomplete"
-            param="term"
+            query-param="term"
             label="label_html"
+            :params="{ having_taxon_name_only: true }"
             @select="loadOtu"
           />
         </div>
