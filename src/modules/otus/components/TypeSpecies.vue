@@ -6,15 +6,13 @@
       </h1>
     </CardHeader>
     <CardContent>
-      <p>
-        <span v-html="typeSpecies.subject_object_tag" />
-      </p>
+      <p v-html="typeSpeciesLabel" />
     </CardContent>
   </Card>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import OtuService from '../services/OtuService'
 
 const props = defineProps({
@@ -25,6 +23,10 @@ const props = defineProps({
 })
 
 const typeSpecies = ref({})
+const typeSpeciesLabel = computed(() => [
+  typeSpecies.value.subject_object_tag || '', 
+  typeSpecies.value.subject_status_tag || ''
+].join(' '))
 
 watch(
   () => props.taxonId, async () => {
