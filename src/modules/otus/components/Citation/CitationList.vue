@@ -6,10 +6,12 @@
       </h1>
     </CardHeader>
     <CardContent>
-      <ul class="list-disc pl-4 text-sm">
-        <li v-for="citation in citations">
-          <span v-html="citation.citation_source_body" />
-        </li>
+      <ul class="text-sm">
+        <CitationRow
+          v-for="citation in citations"
+          :key="citation.id"
+          :citation="citation"
+        />
       </ul>
     </CardContent>
   </Card>
@@ -17,7 +19,8 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import OtuService from '../services/OtuService';
+import CitationRow from './CitationRow.vue'
+import OtuService from '../../services/OtuService';
 
 const props = defineProps({
   taxonId: {

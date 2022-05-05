@@ -3,15 +3,10 @@
     v-if="Object.keys(taxonomy).length"
     :key="taxonomy.otu_id"
   >
-    <button
+    <button-expand
       v-if="!taxonomy.leaf_node"
-      type="button"
-      class="tree__expand"
-      @click="isTreeVisible = !isTreeVisible"
-    >
-      <span v-if="isTreeVisible">-</span>
-      <span v-else>+</span>
-    </button>
+      v-model="isTreeVisible"
+    />
     <router-link 
       class="text-blue-500"
       :to="{ name: 'otus-id', params: { id: taxonomy.otu_id } }"
@@ -43,6 +38,7 @@
 <script setup>
 import TreeView from '@/components/TreeView.vue'
 import SynonymList from './SynonymList.vue'
+import ButtonExpand from '@/components/Button/ButtonExpand.vue'
 import OtuService from '@/modules/otus/services/OtuService';
 import { ref, watch } from 'vue'
 
@@ -117,16 +113,12 @@ const loadDescendants = () => {
     border-left:1px solid rgb(100,100,100);   
   }
 
-  &__expand {
+  .button-expand {
+    position: absolute;
     top: 4px;
     left: -8px;
-    position: absolute;
-    width: 13px;
-    height: 13px;
-    line-height: 12px;
-    border: 1px solid black;
-    background-color: white;
   }
+
 }
 
 </style>

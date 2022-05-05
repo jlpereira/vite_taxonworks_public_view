@@ -35,7 +35,7 @@
 import OtuGallery from '@/modules/otus/components/Gallery.vue'
 import OtuTypeSpecimen from '@/modules/otus/components/TypeSpecimen.vue'
 import OtuTypeSpecies from '@/modules/otus/components/TypeSpecies.vue'
-import OtuCitations from '@/modules/otus/components/Citations.vue'
+import OtuCitations from '@/modules/otus/components/Citation/CitationList.vue'
 import OtuMap from '@/modules/otus/components/Map.vue'
 import OtuDescendants from '@/modules/otus/components/Descendants.vue'
 import { GENUS_GROUP, SPECIES_GROUP } from '@/constants/rankGroups'
