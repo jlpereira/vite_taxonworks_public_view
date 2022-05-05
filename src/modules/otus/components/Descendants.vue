@@ -8,7 +8,7 @@
     <CardContent>
       <ul class="tree">
         <TreeView
-          v-if="taxonomy"
+          v-if="taxonomy && (taxonomy.nomenclatural_synonyms.length || taxonomy.descendants.length)"
           :taxonomy="taxonomy" 
         />
       </ul>
