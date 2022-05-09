@@ -10,9 +10,8 @@
     <router-link 
       class="text-blue-500"
       :to="{ name: 'otus-id', params: { id: taxonomy.otu_id } }"
-    >
-      {{ taxonomy.name }}
-    </router-link>
+      v-html="taxonomy.name"
+    />
     <SynonymList 
       v-if="taxonomy.nomenclatural_synonyms.length"
       class="pb-4"
