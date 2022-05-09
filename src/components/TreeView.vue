@@ -11,7 +11,7 @@
       class="text-blue-500"
       :to="{ name: 'otus-id', params: { id: taxonomy.otu_id } }"
     >
-      {{ taxonomy.label }}
+      {{ taxonomy.name }}
     </router-link>
     <SynonymList 
       v-if="taxonomy.nomenclatural_synonyms.length"
