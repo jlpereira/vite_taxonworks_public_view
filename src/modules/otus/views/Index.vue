@@ -78,7 +78,7 @@ import OtuService from '../services/OtuService'
 const route = useRoute()
 const router = useRouter()
 const routeParams = ref(route.params)
-const tabs = useChildrenRoutes()
+const tabs = [] // useChildrenRoutes()
 
 router.afterEach(route => { routeParams.value = route.params })
 

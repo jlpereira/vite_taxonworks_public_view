@@ -93,12 +93,16 @@ const navItems = [
     link: '/'
   },
   {
+    label: 'About',
+    link: '/'
+  }
+/*   {
     label: 'Search',
     link: '#'
   },
   {
     label: 'Language',
     link: '#'
-  }
+  } */
 ]
 </script>
