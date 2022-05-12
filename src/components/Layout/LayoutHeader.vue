@@ -6,9 +6,13 @@
         class="flex"
       >
         <img
+          v-if="VITE_PAGE_HEADER_LOGO"
           class="mr-3 h-10"
           :src="logoUrl"
         >
+        <span v-else>
+          {{ VITE_PROJECT_NAME }}
+        </span>
       </a>
 
       <button
@@ -84,7 +88,7 @@
 <script setup>
 
 import { computed } from 'vue'
-const { VITE_PAGE_HEADER_LOGO, VITE_BASE_URL } = import.meta.env
+const { VITE_PAGE_HEADER_LOGO, VITE_BASE_URL, VITE_PROJECT_NAME } = import.meta.env
 const logoUrl = computed(() => VITE_BASE_URL + VITE_PAGE_HEADER_LOGO)
 
 const navItems = [
@@ -94,7 +98,7 @@ const navItems = [
   },
   {
     label: 'About',
-    link: '/'
+    link: '/about'
   }
 /*   {
     label: 'Search',

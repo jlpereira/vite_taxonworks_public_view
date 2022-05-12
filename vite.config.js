@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import Vue from '@vitejs/plugin-vue'
+import Markdown from 'vite-plugin-md'
 import path from 'path'
 
 // https://vitejs.dev/config/
@@ -13,6 +14,11 @@ export default ({ mode }) => {
         '@': path.resolve(__dirname, './src')
       },
     },
-    plugins: [vue()]
+    plugins: [
+      Vue({
+        include: [/\.vue$/, /\.md$/], // <--
+      }),
+      Markdown()
+    ],
   })
 }
