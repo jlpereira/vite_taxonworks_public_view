@@ -2,7 +2,7 @@ name: public-build
 
 on:
   push:
-    branches: [main]
+    branches: [ssg]
   workflow_dispatch:
 
 jobs:
