@@ -12,7 +12,7 @@ import VSpinner from '@/components/VSpinner.vue';
 const app = createApp(App)
 
 app.use(router)
-app.component("Card", Card)
+app.component("VCard", Card)
 app.component("CardContent", CardContent)
 app.component("CardHeader", CardHeader)
 app.component("VSpinner", VSpinner)

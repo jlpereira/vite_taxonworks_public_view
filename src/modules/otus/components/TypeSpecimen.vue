@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <VCard>
     <CardHeader>
       <h1 class="text-md">
         Type specimen
@@ -10,7 +10,7 @@
         {{ typeMaterials[0].label }}
       </p>
     </CardContent>
-  </Card>
+  </VCard>
 </template>
 
 <script setup>

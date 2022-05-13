@@ -3,7 +3,7 @@
     <CardContent>
       <GalleryMain :images="images" />
     </CardContent>
-  </Card>
+  </VCard>
 </template>
 
 <script setup>

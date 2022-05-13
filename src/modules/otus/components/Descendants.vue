@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <VCard>
     <CardHeader>
       <h1 class="text-md">
         Descendants and synonyms

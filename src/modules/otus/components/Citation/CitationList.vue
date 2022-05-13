@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <VCard>
     <CardHeader>
       <h1 class="text-md">
         Citations
@@ -14,7 +14,7 @@
         />
       </ul>
     </CardContent>
-  </Card>
+  </VCard>
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <VCard>
     <CardHeader>
       <h1 class="text-md">
         Type species
@@ -8,7 +8,7 @@
     <CardContent>
       <p v-html="typeSpeciesLabel" />
     </CardContent>
-  </Card>
+  </VCard>
 </template>
 
 <script setup>
