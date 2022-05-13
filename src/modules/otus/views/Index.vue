@@ -87,7 +87,7 @@ const taxon = ref({})
 
 watch(routeParams, async (newParams, oldParams) => {
 
-  if (newParams.id == oldParams?.id) { return }
+  if (!newParams.id || newParams.id == oldParams?.id) { return }
 
   otu.value = {}
   taxon.value = {}
