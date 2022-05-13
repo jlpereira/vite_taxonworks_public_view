@@ -27,7 +27,7 @@ Made possible by the wonderful:
 * Individual taxon pages - See citation at the bottom of each page.  
 
 ## Data
-Data for these pages is collaboratively curated online in a [TaxonWorks](https://taxonworks) project. All data behind this site served as JSON through calls to a [TaxonWorks API](https://api.taxonworks.org). You can follow along by using the Console of your browser to explore the Network tab. 
+Data for these pages is collaboratively curated online in a [TaxonWorks](https://taxonworks.org) project. All data behind this site served as JSON through calls to a [TaxonWorks API](https://api.taxonworks.org). You can follow along by using the Console of your browser to explore the Network tab. 
 
 ## Technical
 Want to create your own site? This website is built completely on open-source software. There is a [site template](https://github.com/SpeciesFileGroup/<something>) with more information. Data are curated in a [TaxonWorks](https://taxonworks.org) project then shared via a [TaxonWorks API](https://api.taxonworks.org). Come [chat](https://gitter.im/SpeciesFileGroup/taxonworks) with the TaxonWorks community at any time.
