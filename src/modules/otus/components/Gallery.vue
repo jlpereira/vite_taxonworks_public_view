@@ -1,5 +1,5 @@
 <template>
-  <Card v-if="images.length">
+  <VCard v-if="images.length">
     <CardContent>
       <GalleryMain :images="images" />
     </CardContent>
