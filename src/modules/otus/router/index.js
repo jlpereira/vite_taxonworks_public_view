@@ -16,7 +16,7 @@ export default [{
       name: 'otus-id-overview',
       component: OtuOverview,
     },
-/*     {
+    {
       path: 'timeline',
       name: 'otus-id-timeline',
       component: OtuTimeline
@@ -55,6 +55,6 @@ export default [{
       path: 'distribution',
       name: 'otus-id-distribution',
       component: OtuDistribution
-    }, */
+    },
   ]
 }]
