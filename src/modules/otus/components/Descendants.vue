@@ -13,7 +13,7 @@
         />
       </ul>
     </CardContent>
-  </Card>
+  </VCard>
 </template>
 
 <script setup>
