@@ -2,13 +2,17 @@
   <Card>
     <CardContent class="h-96 max-h-96">
       <VSpinner v-if="isLoading" />
-      <VMap
-        ref="map"
-        class="h-96 max-h-96"
-        :zoom="zoom"
-        :geojson="geojson"
-        @geojson:ready="isLoading = false"
-      />
+      <ClientOnly>
+        <Suspense>
+          <VMap
+            ref="map"
+            class="h-96 max-h-96"
+            :zoom="zoom"
+            :geojson="geojson"
+            @geojson:ready="isLoading = false"
+          />
+        </Suspense>
+      </ClientOnly>
     </CardContent>
   </Card>
 </template>
@@ -32,7 +36,7 @@ const isLoading = ref(true)
 watch(
   () => props.otuId,
   (newId, oldId) => {
-    if(newId === oldId) return
+    if (newId === oldId) return
     isLoading.value = true
 
     OtuService.getGeoJSON(props.otuId).then(({ data }) => {

@@ -11,14 +11,15 @@ export default ({ mode }) => {
     base: VITE_BASE_URL,
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src')
+        '@': path.resolve(__dirname, './src'),
+        'L': 'leaflet/dist/leaflet.js'
       },
     },
     plugins: [
       Vue({
-        include: [/\.vue$/, /\.md$/], // <--
+        include: [/\.vue$/, /\.md$/]
       }),
       Markdown()
-    ],
+    ]
   })
 }

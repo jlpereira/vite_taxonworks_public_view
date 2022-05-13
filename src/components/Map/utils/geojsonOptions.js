@@ -1,8 +1,7 @@
 import { generateHue } from "@/utils/color"
 import { squareMarker } from "../markers"
-import L from 'leaflet'
 
-export default ({
+export default L => ({
   onEachFeature: (feature, layer) => {
     if (!feature.properties?.base?.label) return
     layer.bindTooltip(
@@ -15,7 +14,9 @@ export default ({
   },
 
   pointToLayer: (_, latLng) => {
-    return L.marker(latLng, { icon: squareMarker })
+    return L.marker(latLng, { 
+      icon: squareMarker(L)
+    })
   },
 
   style: (feature) => {

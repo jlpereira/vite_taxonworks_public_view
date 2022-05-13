@@ -16,11 +16,11 @@ import {
   nextTick
 } from 'vue'
 
-import L from 'leaflet'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
 import iconUrl from 'leaflet/dist/images/marker-icon.png'
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 import geojsonDefaultOptions from './utils/geojsonOptions'
+const L = await import('leaflet')
 
 delete L.Icon.Default.prototype._getIconUrl
 
@@ -147,7 +147,7 @@ onUnmounted(() => {
 const setGeoJSON = geojson => {
   if (geojson) {
     L.geoJSON(geojson, {
-      ...geojsonDefaultOptions,
+      ...geojsonDefaultOptions(L),
       ...props.geojsonOptions
     }).addTo(geoJSONGroup)
 
