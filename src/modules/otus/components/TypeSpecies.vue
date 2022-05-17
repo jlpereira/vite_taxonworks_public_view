@@ -5,7 +5,7 @@
         Type species
       </h1>
     </CardHeader>
-    <CardContent>
+    <CardContent class="text-sm">
       <p v-html="typeSpeciesLabel" />
     </CardContent>
   </VCard>

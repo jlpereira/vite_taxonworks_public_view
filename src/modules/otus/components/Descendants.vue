@@ -5,7 +5,7 @@
         Descendants and synonyms
       </h1>
     </CardHeader>
-    <CardContent>
+    <CardContent class="text-sm">
       <ul class="tree">
         <TreeView
           v-if="taxonomy && (taxonomy.nomenclatural_synonyms.length || taxonomy.descendants.length)"

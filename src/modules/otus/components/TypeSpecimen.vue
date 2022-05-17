@@ -5,7 +5,7 @@
         Type specimen
       </h1>
     </CardHeader>
-    <CardContent>
+    <CardContent class="text-sm">
       <p v-if="typeMaterials.length">
         {{ typeMaterials[0].label }}
       </p>
