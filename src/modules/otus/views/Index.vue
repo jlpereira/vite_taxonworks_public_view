@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-white border-b pt-6">
+    <div class="bg-white border-b pt-6 pl-4 pr-4">
       <div 
         class="container mx-auto"
       >
@@ -50,8 +50,8 @@
         </TabMenu>
       </div>
     </div>
-    <div>
-      <div class="container mx-auto pt-4 pb-4">
+    <div class="pt-4">
+      <div class="container mx-auto box-border">
         <router-view
           v-if="taxon.id && otu.id"
           :key="route.fullPath"

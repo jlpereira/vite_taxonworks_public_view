@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded border-b">
+  <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded border-b pl-4 pr-4">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       <a
         href="#"

@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer text-white bottom-0 w-full border-t border-gray-200 bg-zinc-800">
+  <footer class="footer text-white bottom-0 border-t border-gray-200 bg-zinc-800 pl-4 pr-4">
     <div class="container mx-auto text-sm pt-2 pb-4">
       <div class="pt-4 pb-4">
         {{ VITE_PAGE_PROJECT_AUTHORS }}
