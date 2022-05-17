@@ -2,7 +2,7 @@
   <VCard>
     <CardHeader>
       <h1 class="text-md">
-        Type species
+        Type
       </h1>
     </CardHeader>
     <CardContent class="text-sm">

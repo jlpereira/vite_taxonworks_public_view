@@ -19,12 +19,16 @@ const commonNameLabel = computed(() => commonNames.value.map(item => item.name).
 watch(
   () => props.otuId,
   id => {
-    OtuService.getDescendants(id, { 
-      max_descendants_depth: 0,
-      extend: ['common_names']
-    }).then(({ data }) => {
-      commonNames.value = data.common_names
-    })
+    if (id) {
+      OtuService.getDescendants(id, { 
+        max_descendants_depth: 0,
+        extend: ['common_names']
+      }).then(({ data }) => {
+        commonNames.value = data.common_names
+      })
+    } else {
+      commonNames.value = []
+    }
   }
 )
 
