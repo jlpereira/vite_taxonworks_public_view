@@ -51,7 +51,7 @@
         </TabMenu>
       </div>
     </div>
-    <div class="pt-4">
+    <div class="pt-4 pb-4">
       <div class="container mx-auto box-border">
         <router-view
           v-if="taxon.id && otu.id"
