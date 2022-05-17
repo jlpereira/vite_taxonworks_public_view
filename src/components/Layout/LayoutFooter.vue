@@ -40,7 +40,8 @@
             :src="TWLogo"
             title="TaxonWorks"
           >
-          <span class="ml-4">
+          <span class="ml-2 mr-2">|</span>
+          <span>
             The engine of this website and database is powered by 
             <a 
               target="_blank"
