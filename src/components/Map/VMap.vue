@@ -150,8 +150,12 @@ const setGeoJSON = geojson => {
       ...geojsonDefaultOptions,
       ...props.geojsonOptions
     }).addTo(geoJSONGroup)
+    
+    const bounds = geoJSONGroup.getBounds()
 
-    mapObject.fitBounds(geoJSONGroup.getBounds(), fitBoundsOptions.value)
+    if (bounds.isValid()) {
+      mapObject.fitBounds(bounds, fitBoundsOptions.value)
+    }
   }
 
   emit('geojson:ready', geoJSONGroup)
