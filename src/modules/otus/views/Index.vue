@@ -36,6 +36,7 @@
         <div class="mt-8 mb-10">
           <TaxaInfo
             :taxon="taxon"
+            :otu-id="otu.id"
           />
         </div>
 

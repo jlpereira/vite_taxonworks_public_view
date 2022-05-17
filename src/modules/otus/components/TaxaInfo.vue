@@ -12,18 +12,24 @@
       />
     </h1>
     <h2 class="text-1xl text-gray-700">
-      [Here goes common name]
+      <CommonNames :otu-id="props.otuId" />
     </h2>
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue'
+import CommonNames from './CommonNames.vue'
 
 const props = defineProps({
   taxon: {
     type: Object,
     default: () => {}
+  },
+
+  otuId: {
+    type: Number,
+    default: undefined
   }
 })
 
