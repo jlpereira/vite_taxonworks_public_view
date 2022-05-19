@@ -17,7 +17,7 @@
         >
       </div>
 
-      <div class="bg-white attributions bottom-0 h-32 p-4 rounded-b-lg align-middle flex justify-between flex-col text-center">
+      <div class="bg-white attributions bottom-0 h-24 p-4 rounded-b-lg align-middle flex justify-between flex-col text-center">
         <ImageDepictions
           class="my-auto"
           :depictions="image.depictions" 
