@@ -2,7 +2,7 @@
   <VCard>
     <CardHeader>
       <h1 class="text-md">
-        Citations
+        Nomenclature citations
       </h1>
     </CardHeader>
     <CardContent>
