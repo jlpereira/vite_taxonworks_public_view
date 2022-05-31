@@ -27,12 +27,12 @@
 
     <ul
       v-if="list.length"
-      class="autocomplete__list list absolute z-[500] max-h-52 overflow-y-auto border"
+      class="autocomplete__list list absolute z-[500] max-h-52 overflow-y-auto border bg-white"
     >
       <li
         v-for="item in list"
         :key="item.id"
-        class="p-2 border-b bg-white text-sm cursor-pointer hover:bg-gray-200"
+        class="autocomplete__item p-2 border-b bg-white text-sm cursor-pointer hover:bg-gray-200"
         @click="selectItem(item)"
       >
         <span v-html="item[label]" />
@@ -115,6 +115,11 @@ const selectItem = item => {
 .autocomplete {
   &__list {
     display: none;
+    padding: 0px;
+  }
+
+  &__item {
+    margin: 0px;
   }
 
   &__input:focus ~ &__list {

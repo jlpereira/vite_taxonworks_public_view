@@ -11,7 +11,7 @@ _{{frontmatter.lead}}_
 Welcome to *{{frontmatter.project}}*, a website of taxon pages generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org). 
 
 ## Get started!
-[Start browsing](https://jlpereira.github.io/vite_taxonworks_public_view/#/otus/132199/overview).  
+<OtuAutocomplete/>
 
 ## Announcements
 * 5/1/2022 - We've grown!  
@@ -19,3 +19,7 @@ Welcome to *{{frontmatter.project}}*, a website of taxon pages generated from th
 
 ## Find out more
 Learn how to collaborate with the {{frontmatter.title}} project. Contact information, technical details, and more are available at [About](/about).
+
+<script setup>
+import OtuAutocomplete from '../components/OtuAutocomplete.vue'
+</script>
